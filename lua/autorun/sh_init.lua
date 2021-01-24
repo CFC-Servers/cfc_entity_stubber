@@ -3,15 +3,21 @@ AddCSLuaFile()
 CFC_Entity_Stubber = {}
 
 local stubQueue = {}
+local entLists = { "Weapon", "SpawnableEntities", "Vehicles", "NPC" }
+local entTable = {}
 
-function CFC_Entity_Stubber.registerStub( stub )
-    table.insert( stubQueue, stub )
+function CFC_Entity_Stubber.registerStub( className, stub )
+    stubQueue[className] = stub
 end
 
--- Load our stubs
-local packs = { "cw2_guns", "cw2_attachments" }
+-- Stub tables
+CFC_Entity_Stubber.packs = { "cw2_guns" }
+CFC_Entity_Stubber.attachments = { "cw2_attachments" }
 
-for _, pack in pairs( packs ) do
+print( " " )
+print( "[Entity Stubber] Loading stubs." )
+
+for _, pack in pairs( CFC_Entity_Stubber.packs ) do
     local packPath = "cfc_entity_stubber/stubs/" .. pack .. "/"
 
     -- List all stubs in the packs folder, sorted by names ascending
@@ -27,13 +33,41 @@ for _, pack in pairs( packs ) do
     end
 end
 
+-- Saves all existing entity classes to a table.
+local function buildEntTable( callback )
+    for _, listName in pairs( entLists ) do
+        local listContents = list.Get( listName )
+
+        for class in pairs( listContents ) do
+            entTable[class] = true
+        end
+    end
+    callback()
+end
+
+-- Verifies all stubs existing then loading existing ones.
+local function validateStub( stubClass, stubFunc )
+    if not entTable[stubClass] then
+        print( "[Entity Stubber] Entity: " .. stubClass .. " not found, skipping..." )
+        return
+    end
+
+    stubFunc()
+    print( "[Entity Stubber] Entity: " .. stubClass .. " successfully loaded." )
+
+    return false
+end
+
+-- Loops through stubs and calls validateStub()
 local function runStubs()
-    print( "[Entity Stubber] Running stubs!" )
-    for _, stub in pairs( stubQueue ) do
-        stub()
+    print( " " )
+    print( "[Entity Stubber] Applying stubs!" )
+
+    for class, stub in pairs( stubQueue ) do
+        validateStub( class, stub )
     end
 end
 
 hook.Add( "InitPostEntity", "StubberStart", function()
-    runStubs()
+    buildEntTable( runStubs )
 end)
