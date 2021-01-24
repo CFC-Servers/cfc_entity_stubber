@@ -1,6 +1,6 @@
 if SERVER then AddCSLuaFile() end
 
-CFC_Entity_Stubber.registerStub( "bg_longbarrel", function()
+CFC_Entity_Stubber.registerStub( "nonexistandentity", function()
     local attachment = CustomizableWeaponry.registeredAttachmentsSKey["bg_longbarrel"]
 
     attachment.statModifiers = {
