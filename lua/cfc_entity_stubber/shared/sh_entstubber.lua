@@ -1,5 +1,8 @@
 AddCSLuaFile()
 
+-- Stub tables
+CFC_Entity_Stubber.packs = { "cw2_guns", "cw2_attachments" }
+
 local registeredStubs = {}
 local registeredAttachments = {}
 
@@ -19,12 +22,7 @@ function CFC_Entity_Stubber.getAttachment( attachName )
     return attachment
 end
 
--- Stub tables
-CFC_Entity_Stubber.packs = { "cw2_guns" }
-CFC_Entity_Stubber.attachments = { "cw2_attachments" }
-
-print( " " )
-print( "[Entity Stubber] Loading stubs." )
+MsgC( Color( 41, 41, 41 ), "\n[", Color( 150, 150, 150 ), "Entity Stubber", Color( 41, 41, 41 ), "] ", Color( 201, 201, 201 ), "Loading stubs...\n" )
 
 for _, pack in pairs( CFC_Entity_Stubber.packs ) do
     local packPath = "cfc_entity_stubber/stubs/" .. pack .. "/"
@@ -32,14 +30,15 @@ for _, pack in pairs( CFC_Entity_Stubber.packs ) do
     -- List all stubs in the packs folder, sorted by names ascending
     local stubs, _ = file.Find( packPath .. "*.lua", "LUA", "nameasc" )
 
-    for _, stub in next, stubs do
+    for _, stub in pairs( stubs ) do
         if stub then
             local stubPath = packPath .. stub
-            print( "[Entity Stubber] Loading " .. stubPath .. "..." )
+            MsgC( Color( 41, 41, 41 ), "[", Color( 150, 150, 150 ), "Entity Stubber", Color( 41, 41, 41 ), "] ", Color( 201, 201, 201 ), "Loading " .. stubPath .. "...\n" )
 
             include( stubPath )
         end
     end
+    print("\n")
 end
 
 -- Saves all existing entity classes to a table.
@@ -51,27 +50,28 @@ local function buildEntTable()
             entTable[class] = true
         end
     end
+    table.Merge( entTable, CustomizableWeaponry.registeredAttachmentsSKey )
 end
 
 -- Verifies all stubs existing then loading existing ones.
 local function runStub( stubClass, stubFunc )
     if not entTable[stubClass] then
-        print( "[Entity Stubber] Entity: " .. stubClass .. " not found, skipping..." )
+        MsgC( Color( 41, 41, 41 ), "[", Color( 150, 150, 150 ), "Entity Stubber", Color( 41, 41, 41 ), "] ", Color( 255, 0, 0 ), stubClass .. " not found, skipping...\n" )
         return
     end
 
     stubFunc()
-    print( "[Entity Stubber] Entity: " .. stubClass .. " successfully loaded." )
+    MsgC( Color( 41, 41, 41 ), "[", Color( 150, 150, 150 ), "Entity Stubber", Color( 41, 41, 41 ), "] ", Color( 0, 255, 0 ), stubClass .. " successfully loaded.\n" )
 end
 
 -- Loops through stubs and calls runStub()
 local function runStubs()
-    print( " " )
-    print( "[Entity Stubber] Applying stubs!" )
+    MsgC( Color( 41, 41, 41 ), "\n[", Color( 150, 150, 150 ), "Entity Stubber", Color( 41, 41, 41 ), "] ", Color( 201, 201, 201 ), "Applying stubs...\n" )
 
     for class, stub in pairs( registeredStubs ) do
         runStub( class, stub )
     end
+    print("\n")
 end
 
 hook.Add( "InitPostEntity", "StubberStart", function()
