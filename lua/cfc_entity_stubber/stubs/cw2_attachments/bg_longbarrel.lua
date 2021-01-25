@@ -1,7 +1,7 @@
 if SERVER then AddCSLuaFile() end
 
 CFC_Entity_Stubber.registerStub( "bg_longbarrel", function()
-    local attachment = CustomizableWeaponry.registeredAttachmentsSKey["bg_longbarrel"]
+    local attachment = CFC_Entity_Stubber.getAttachment( "bg_longbarrel" )
 
     attachment.statModifiers = {
         AimSpreadMult        = -0.1,

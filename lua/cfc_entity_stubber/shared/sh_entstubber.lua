@@ -1,13 +1,22 @@
 AddCSLuaFile()
 
-CFC_Entity_Stubber = {}
-
 local registeredStubs = {}
+local registeredAttachments = {}
+
 local entLists = { "Weapon", "SpawnableEntities", "Vehicles", "NPC" }
 local entTable = {}
 
 function CFC_Entity_Stubber.registerStub( className, stub )
     registeredStubs[className] = stub
+end
+
+function CFC_Entity_Stubber.registerAttachmentStub( attachName, stubFunc )
+    registeredAttachments[attachName] = stubFunc
+end
+
+function CFC_Entity_Stubber.getAttachment( attachName )
+    local attachment = CustomizableWeaponry.registeredAttachmentsSKey[ attachName ]
+    return attachment
 end
 
 -- Stub tables
