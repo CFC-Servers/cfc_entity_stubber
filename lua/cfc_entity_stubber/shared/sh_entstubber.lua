@@ -2,12 +2,12 @@ AddCSLuaFile()
 
 CFC_Entity_Stubber = {}
 
-local stubQueue = {}
+local registeredStubs = {}
 local entLists = { "Weapon", "SpawnableEntities", "Vehicles", "NPC" }
 local entTable = {}
 
 function CFC_Entity_Stubber.registerStub( className, stub )
-    stubQueue[className] = stub
+    registeredStubs[className] = stub
 end
 
 -- Stub tables
@@ -34,7 +34,7 @@ for _, pack in pairs( CFC_Entity_Stubber.packs ) do
 end
 
 -- Saves all existing entity classes to a table.
-local function buildEntTable( callback )
+local function buildEntTable()
     for _, listName in pairs( entLists ) do
         local listContents = list.Get( listName )
 
@@ -42,11 +42,10 @@ local function buildEntTable( callback )
             entTable[class] = true
         end
     end
-    callback()
 end
 
 -- Verifies all stubs existing then loading existing ones.
-local function validateStub( stubClass, stubFunc )
+local function runStub( stubClass, stubFunc )
     if not entTable[stubClass] then
         print( "[Entity Stubber] Entity: " .. stubClass .. " not found, skipping..." )
         return
@@ -54,20 +53,19 @@ local function validateStub( stubClass, stubFunc )
 
     stubFunc()
     print( "[Entity Stubber] Entity: " .. stubClass .. " successfully loaded." )
-
-    return false
 end
 
--- Loops through stubs and calls validateStub()
+-- Loops through stubs and calls runStub()
 local function runStubs()
     print( " " )
     print( "[Entity Stubber] Applying stubs!" )
 
-    for class, stub in pairs( stubQueue ) do
-        validateStub( class, stub )
+    for class, stub in pairs( registeredStubs ) do
+        runStub( class, stub )
     end
 end
 
 hook.Add( "InitPostEntity", "StubberStart", function()
-    buildEntTable( runStubs )
+    buildEntTable()
+    runStubs()
 end)
