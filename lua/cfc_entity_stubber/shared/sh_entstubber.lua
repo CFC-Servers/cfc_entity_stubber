@@ -37,7 +37,6 @@ for _, pack in pairs( CFC_Entity_Stubber.packs ) do
         end
     end
 end
-print("\n")
 
 -- Saves all existing entity classes to a table.
 local function buildEntTable()
