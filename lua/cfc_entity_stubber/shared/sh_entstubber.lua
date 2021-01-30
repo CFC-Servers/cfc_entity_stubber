@@ -69,7 +69,6 @@ local function runStubs()
     for class, stub in pairs( registeredStubs ) do
         runStub( class, stub )
     end
-    print("\n")
 end
 
 hook.Add( "InitPostEntity", "StubberStart", function()
