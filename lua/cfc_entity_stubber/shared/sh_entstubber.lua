@@ -33,13 +33,11 @@ for _, pack in pairs( CFC_Entity_Stubber.packs ) do
     for _, stub in pairs( stubs ) do
         if stub then
             local stubPath = packPath .. stub
-            MsgC( Color( 41, 41, 41 ), "[", Color( 150, 150, 150 ), "Entity Stubber", Color( 41, 41, 41 ), "] ", Color( 201, 201, 201 ), "Loading " .. stubPath .. "...\n" )
-
             include( stubPath )
         end
     end
-    print("\n")
 end
+print("\n")
 
 -- Saves all existing entity classes to a table.
 local function buildEntTable()
