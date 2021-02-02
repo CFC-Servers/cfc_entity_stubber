@@ -10,7 +10,7 @@ The stubs are applied after all entities are loaded during server startup.
 
 
 
-# Example stub registration
+# Example weapon stub registration
 ```lua
 -- lua/cfc_entity_stubber/stubs/cw2_guns/cw_ak74.lua
 if SERVER then AddCSLuaFile() end
@@ -24,7 +24,7 @@ CFC_Entity_Stubber.registerStub( function()
 end )
 ```
 
-# Example stub registration
+# Example attachment stub registration
 ```lua
 -- lua/cfc_entity_stubber/stubs/cw2_attachments/bg_longbarrel.lua.lua
 if SERVER then AddCSLuaFile() end
