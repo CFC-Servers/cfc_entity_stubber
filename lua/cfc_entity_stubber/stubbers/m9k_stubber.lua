@@ -7,7 +7,7 @@ function CFC_M9k_Stubber.registerStub( stub )
 end
 
 -- Load our stubs
-local packs = { "m9k_assault_rifles" }
+local packs = { "m9k_assault_rifles", "m9k_heavy_weapons", "m9k_small_arms_pack", "m9k_specialties" }
 
 for _, pack in pairs( packs ) do
     local packPath = "cfc_entity_stubber/m9k/" .. pack .. "/"
