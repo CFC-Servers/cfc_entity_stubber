@@ -19,10 +19,9 @@ function cfcEntityStubber.getStubs( tab )
         local stubFolderPath = "cfc_entity_stubber/" .. dir .. "/*"
         -- List all stubs in the packs folder, sorted by names ascending
         local stubFiles, stubFolders = file.Find( stubFolderPath, "LUA", "nameasc" )
-        PrintTable( stubFolders )
         local emptyFolder = table.IsEmpty( stubFiles )
         local emptySubFolder = table.IsEmpty( stubFolders )
-        print( emptySubFolder )
+        print( emptyFolder, emptySubFolder )
 
         if emptyFolder and emptySubFolder then
             MsgC( Color( 41, 41, 41 ), "[", Color( 150, 150, 150 ), "Stubber", Color( 41, 41, 41 ), "] ", Color( 255, 0, 0 ), "folder " .. dir .. " is empty or doesn't exist.\n" )
@@ -34,17 +33,15 @@ function cfcEntityStubber.getStubs( tab )
             for _, stubFile in ipairs( stubFiles ) do
                 local subfolderPath = stubFolderPath .. stubFile
                 local subfolderFiles = file.Find( subfolderPath, "LUA", "nameasc" )
-                print( subfolderFiles )
+                --print( subfolderFiles )
             end
         end
 
         if not emptyFolder then
             for _, stubFile in ipairs( stubFiles ) do
-                print( stubFile )
+                --print( stubFile )
             end
         end
-
-        PrintTable( stubFolders )
         -- for _, stub in next, stubs do
         --     if stub then
         --         local stubPath = packPath .. stub
