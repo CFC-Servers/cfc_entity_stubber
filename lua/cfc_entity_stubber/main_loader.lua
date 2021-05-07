@@ -2,7 +2,6 @@ AddCSLuaFile( )
 cfcEntityStubber = { }
 cfcEntityStubber.stubQueue = { }
 cfcEntityStubber.stubbers = { }
-local stubQueue = { }
 local stubbersDirectory = "cfc_entity_stubber/stubbers/"
 
 -- MAIN STUBBER FUNCTIONS 
@@ -55,7 +54,7 @@ function cfcEntityStubber.getStubs( tab )
     end
 end
 
-function cfcEntityStubber.runStubs( )
+function cfcEntityStubber.runStubs( stubQueue )
     for _, stub in pairs( stubQueue ) do
         stub( )
     end
