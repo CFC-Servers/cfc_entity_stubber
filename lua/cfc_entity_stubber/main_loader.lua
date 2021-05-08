@@ -41,7 +41,7 @@ function cfcEntityStubber.loadStubs( tab )
 
         if not hasFiles then
             for _, stubFile in ipairs( stubFiles ) do
-                print( stubFile )
+                include( stubFolderPath .. stubFile )
             end
         end
     end
@@ -71,8 +71,8 @@ function cfcEntityStubber.getWeapon( wepClass )
 end
 
 -- HOOKS
-hook.Add( "InitPostEntity", "StubberStart", function( )
-    cfcEntityStubber.includeStubbers( )
-    cfcEntityStubber.loadStubs( cfcEntityStubber.stubbers )
-    cfcEntityStubber.runStubs( cfcEntityStubber.stubQueue )
-end )
+--hook.Add( "InitPostEntity", "StubberStart", function( )
+cfcEntityStubber.includeStubbers( )
+cfcEntityStubber.loadStubs( cfcEntityStubber.stubbers )
+cfcEntityStubber.runStubs( cfcEntityStubber.stubQueue )
+--end )
