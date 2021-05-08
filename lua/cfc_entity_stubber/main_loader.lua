@@ -5,11 +5,15 @@ cfcEntityStubber.oldWeaponStats = { }
 local stubbersDirectory = "cfc_entity_stubber/stubbers/"
 
 -- MAIN STUBBER FUNCTIONS 
+function cfcEntityStubber.printMessage( text, color )
+    MsgC( Color( 41, 41, 41 ), "[", Color( 150, 150, 150 ), "Stubber", Color( 41, 41, 41 ), "] ", color, text .. "\n" )
+end
+
 function cfcEntityStubber.includeStubbers( )
     local files = file.Find( stubbersDirectory .. "*.lua", "LUA", "datedesc" )
 
     for _, stubber in ipairs( files ) do
-        MsgC( Color( 41, 41, 41 ), "[", Color( 150, 150, 150 ), "Stubber", Color( 41, 41, 41 ), "] ", Color( 0, 255, 0 ), stubber .. " successfully loaded.\n" )
+        cfcEntityStubber.printMessage( stubber .. " successfully loaded.", Color( 0, 255, 0 ) )
         include( stubbersDirectory .. stubber )
     end
 end
@@ -23,7 +27,7 @@ function cfcEntityStubber.loadStubs( tab )
         local hasFolders = table.IsEmpty( stubFolders )
 
         if hasFiles and hasFolders then
-            MsgC( Color( 41, 41, 41 ), "[", Color( 150, 150, 150 ), "Stubber", Color( 41, 41, 41 ), "] ", Color( 255, 0, 0 ), "folder " .. dir .. " is empty or doesn't exist.\n" )
+            cfcEntityStubber.printMessage( "folder " .. dir .. " is empty or doesn't exist.", Color( 255, 0, 0 ) )
 
             return
         end
