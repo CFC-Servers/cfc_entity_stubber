@@ -2,7 +2,6 @@ cfcEntityStubber = { }
 cfcEntityStubber.stubQueue = { }
 cfcEntityStubber.stubbers = { }
 local stubbersDirectory = "cfc_entity_stubber/stubbers/"
-local baseDirectory = "cfc_entity_stubber/"
 
 -- MAIN STUBBER FUNCTIONS 
 function cfcEntityStubber.includeStubbers( )
