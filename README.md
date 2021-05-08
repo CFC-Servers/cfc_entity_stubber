@@ -1,6 +1,4 @@
 # cfc_entity_stubber
-jk it's a cw2 stubber
-
 Allows for the stubbing of almost all properties on Entities without having to actually modify the Entities files directly.
 
 One can create the stub files in `lua/cfc_entity_stubber/stubs/<pack>/<weapon_name>.lua` (see below for example).
