@@ -1,4 +1,4 @@
-AddCSLuaFile( )
+include( "lua/cfc_entity_stubber/m9k/m9k_ak47.lua" )
 cfcEntityStubber = { }
 cfcEntityStubber.stubQueue = { }
 cfcEntityStubber.stubbers = { }
@@ -19,6 +19,8 @@ function cfcEntityStubber.getStubs( tab )
         local stubFolderPath = "cfc_entity_stubber/" .. dir .. "/*"
         -- List all stubs in the packs folder, sorted by names ascending
         local stubFiles, stubFolders = file.Find( stubFolderPath, "LUA", "nameasc" )
+        PrintTable( stubFiles )
+        PrintTable( stubFolders )
         local emptyFolder = table.IsEmpty( stubFiles )
         local emptySubFolder = table.IsEmpty( stubFolders )
         print( emptyFolder, emptySubFolder )
@@ -30,7 +32,7 @@ function cfcEntityStubber.getStubs( tab )
         end
 
         if not emptySubFolder then
-            for _, stubFile in ipairs( stubFiles ) do
+            for _, stubFile in ipairs( stubFolders ) do
                 local subfolderPath = stubFolderPath .. stubFile
                 local subfolderFiles = file.Find( subfolderPath, "LUA", "nameasc" )
                 --print( subfolderFiles )
