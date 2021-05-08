@@ -1,6 +1,8 @@
 cfcEntityStubber = { }
 cfcEntityStubber.stubQueue = { }
 cfcEntityStubber.stubbers = { }
+cfcEntityStubber.oldWeaponStats = { }
+cfcEntityStubber.newWeaponStats = { }
 local stubbersDirectory = "cfc_entity_stubber/stubbers/"
 
 -- MAIN STUBBER FUNCTIONS 
@@ -43,12 +45,6 @@ function cfcEntityStubber.getStubs( tab )
                 print( stubFile )
             end
         end
-        -- for _, stub in next, stubs do
-        --     if stub then
-        --         local stubPath = packPath .. stub
-        --         include( stubPath )
-        --     end
-        -- end
     end
 end
 
@@ -66,6 +62,13 @@ end
 
 function cfcEntityStubber.registerStub( stub )
     table.insert( cfcEntityStubber.stubQueue, stub )
+end
+
+function cfcEntityStubber.getWeapon( wepClass )
+    weapon = weapons.GetStored( wepClass )
+    cfcEntityStubber.newWeaponStats.wepClass = weapon
+
+    return weapon
 end
 
 -- HOOKS
