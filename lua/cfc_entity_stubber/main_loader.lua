@@ -2,7 +2,6 @@ cfcEntityStubber = { }
 cfcEntityStubber.stubQueue = { }
 cfcEntityStubber.stubbers = { }
 cfcEntityStubber.oldWeaponStats = { }
-cfcEntityStubber.newWeaponStats = { }
 local stubbersDirectory = "cfc_entity_stubber/stubbers/"
 
 -- MAIN STUBBER FUNCTIONS 
@@ -15,21 +14,21 @@ function cfcEntityStubber.includeStubbers( )
     end
 end
 
-function cfcEntityStubber.getStubs( tab )
+function cfcEntityStubber.loadStubs( tab )
     for _, dir in ipairs( tab ) do
         local stubFolderPath = "cfc_entity_stubber/" .. dir .. "/"
         -- List all stubs in the packs folder, sorted by names ascending
         local stubFiles, stubFolders = file.Find( stubFolderPath .. "*", "LUA", "nameasc" )
-        local emptyFolder = table.IsEmpty( stubFiles )
-        local emptySubFolder = table.IsEmpty( stubFolders )
+        local hasFiles = table.IsEmpty( stubFiles )
+        local hasFolders = table.IsEmpty( stubFolders )
 
-        if emptyFolder and emptySubFolder then
+        if hasFiles and hasFolders then
             MsgC( Color( 41, 41, 41 ), "[", Color( 150, 150, 150 ), "Stubber", Color( 41, 41, 41 ), "] ", Color( 255, 0, 0 ), "folder " .. dir .. " is empty or doesn't exist.\n" )
 
             return
         end
 
-        if not emptySubFolder then
+        if not hasFolders then
             for _, stubFile in ipairs( stubFolders ) do
                 local subfolderPath = stubFolderPath .. stubFile
                 local subfolderFiles = file.Find( subfolderPath .. "/*.lua", "LUA", "nameasc" )
@@ -40,7 +39,7 @@ function cfcEntityStubber.getStubs( tab )
             end
         end
 
-        if not emptyFolder then
+        if not hasFiles then
             for _, stubFile in ipairs( stubFiles ) do
                 print( stubFile )
             end
@@ -66,7 +65,7 @@ end
 
 function cfcEntityStubber.getWeapon( wepClass )
     weapon = weapons.GetStored( wepClass )
-    cfcEntityStubber.newWeaponStats.wepClass = weapon
+    cfcEntityStubber.oldWeaponStats[ wepClass ] = weapon
 
     return weapon
 end
@@ -74,6 +73,6 @@ end
 -- HOOKS
 hook.Add( "InitPostEntity", "StubberStart", function( )
     cfcEntityStubber.includeStubbers( )
-    cfcEntityStubber.getStubs( cfcEntityStubber.stubbers )
+    cfcEntityStubber.loadStubs( cfcEntityStubber.stubbers )
     cfcEntityStubber.runStubs( cfcEntityStubber.stubQueue )
 end )
