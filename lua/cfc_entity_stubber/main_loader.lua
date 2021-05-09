@@ -69,7 +69,7 @@ end
 
 function cfcEntityStubber.getWeapon( wepClass )
     weapon = weapons.GetStored( wepClass )
-    cfcEntityStubber.oldWeaponStats[ wepClass ] = weapon
+    cfcEntityStubber.oldWeaponStats[wepClass] = weapon
 
     return weapon
 end
