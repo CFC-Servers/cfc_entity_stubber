@@ -1,6 +1,6 @@
-AddCSLuaFile( )
+AddCSLuaFile()
 
-cfcEntityStubber.registerStub( function( )
+cfcEntityStubber.registerStub( function()
     local weapon = cfcEntityStubber.getWeapon( "m9k_ak47" )
     weapon.Primary.KickDown = 0.1
     weapon.Primary.Damage = 10000
