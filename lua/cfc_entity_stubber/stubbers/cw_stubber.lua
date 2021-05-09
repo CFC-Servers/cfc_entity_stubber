@@ -1,2 +1,2 @@
-AddCSLuaFile( )
+AddCSLuaFile()
 cfcEntityStubber.registerStubber( "cw" )
