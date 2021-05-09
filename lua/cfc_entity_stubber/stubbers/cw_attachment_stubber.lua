@@ -1,4 +1,4 @@
-AddCSLuaFile( )
+AddCSLuaFile()
 cfcEntityStubber.registerStubber( "cw_attachment" )
 
 function cfcEntityStubber.getAttachment( attachName )
