@@ -1,7 +1,7 @@
-cfcEntityStubber = { }
-cfcEntityStubber.stubQueue = { }
-cfcEntityStubber.stubbers = { }
-cfcEntityStubber.oldWeaponStats = { }
+cfcEntityStubber = {}
+cfcEntityStubber.stubQueue = {}
+cfcEntityStubber.stubbers = {}
+cfcEntityStubber.oldWeaponStats = {}
 local stubbersDirectory = "cfc_entity_stubber/stubbers/"
 
 -- MAIN STUBBER FUNCTIONS 
@@ -9,7 +9,7 @@ function cfcEntityStubber.printMessage( text, color )
     MsgC( Color( 41, 41, 41 ), "[", Color( 150, 150, 150 ), "Stubber", Color( 41, 41, 41 ), "] ", color, text .. "\n" )
 end
 
-function cfcEntityStubber.includeStubbers( )
+function cfcEntityStubber.includeStubbers()
     local files = file.Find( stubbersDirectory .. "*.lua", "LUA", "datedesc" )
 
     for _, stubber in ipairs( files ) do
@@ -53,7 +53,7 @@ end
 
 function cfcEntityStubber.runStubs( stubQueue )
     for _, stub in pairs( stubQueue ) do
-        stub( )
+        stub()
     end
 end
 
@@ -75,8 +75,8 @@ function cfcEntityStubber.getWeapon( wepClass )
 end
 
 -- HOOKS
---hook.Add( "InitPostEntity", "StubberStart", function( )
-cfcEntityStubber.includeStubbers( )
+--hook.Add( "InitPostEntity", "StubberStart", function()
+cfcEntityStubber.includeStubbers()
 cfcEntityStubber.loadStubs( cfcEntityStubber.stubbers )
 cfcEntityStubber.runStubs( cfcEntityStubber.stubQueue )
 --end )
