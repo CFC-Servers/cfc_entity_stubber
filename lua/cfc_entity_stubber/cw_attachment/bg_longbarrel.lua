@@ -1,6 +1,6 @@
-AddCSLuaFile( )
+AddCSLuaFile()
 
-cfcEntityStubber.registerStub( function( )
+cfcEntityStubber.registerStub( function()
     local attachment = cfcEntityStubber.getAttachment( "bg_longbarrel" )
 
     attachment.statModifiers = {
