@@ -12,7 +12,7 @@ function cfcEntityStubber.applyAttachmentChange( attachment )
     CustomizableWeaponry:registerAttachment( attachment )
 
     if CLIENT then
-        attachment["description"] = { }
+        attachment["description"] = {}
         CustomizableWeaponry:createStatText( attachment )
     end
 end
