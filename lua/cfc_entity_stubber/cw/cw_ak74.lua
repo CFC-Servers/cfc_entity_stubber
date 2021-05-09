@@ -1,6 +1,6 @@
-AddCSLuaFile( )
+AddCSLuaFile()
 
-cfcEntityStubber.registerStub( function( )
+cfcEntityStubber.registerStub( function()
     local weapon = cfcEntityStubber.getWeapon( "cw_ak74" )
     weapon.Shots = 10
     weapon.Damage = 10000
