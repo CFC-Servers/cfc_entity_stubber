@@ -1,46 +1,40 @@
 # cfc_entity_stubber
-Allows for the stubbing of almost all properties on Entities without having to actually modify the Entities files directly.
+This addon allows creation of "stubbers" and "stub" files. Stubbers are used to create functions for the specific stub files. Stub files allow the editor to make specific changes on weapons / entities without modifying the code of the entity.
 
-One can create the stub files in `lua/cfc_entity_stubber/stubs/<pack>/<weapon_name>.lua` (see below for example).
-
-The stubs are applied after all entities are loaded during server startup.
-
-X
+The stubs are applied after all entities are loaded during server startup, or on client after all entities initialized.
 
 
-# Example weapon stub registration
+# Example stubber registration
 ```lua
--- lua/cfc_entity_stubber/stubs/cw2_guns/cw_ak74.lua
-if SERVER then AddCSLuaFile() end
+-- lua/cfc_entity_stubber/stubbers/m9k_stubber.lua
+AddCSLuaFile()
+cfcEntityStubber.registerStubber( "m9k" )
+```
+# Example stub registration
 
-CFC_Entity_Stubber.registerStub( function()
-    local weapon = weapons.GetStored( "cw_ak74" )
+```lua
+-- lua/cfc_entity_stubber/m9k/m9k_assault_rifles/m9k_ak47.lua
+AddCSLuaFile()
 
-    weapon.Shots = 10
-    weapon.Damage = 100
-    weapon.DeployTime = 0
+cfcEntityStubber.registerStub( function()
+    local weapon = cfcEntityStubber.getWeapon( "m9k_ak47" )
+    weapon.Primary.KickDown = 0.1
+    weapon.Primary.Damage = 10000
+    weapon.Primary.Spread = .08
 end )
 ```
+# Inner workings
 
-# Example attachment stub registration
-```lua
--- lua/cfc_entity_stubber/stubs/cw2_attachments/bg_longbarrel.lua.lua
-if SERVER then AddCSLuaFile() end
+1. The main stubber gets loaded and includes for all files in:
 
-CFC_Entity_Stubber.registerStub( "bg_longbarrel", function()
-    local attachment = CFC_Entity_Stubber.getAttachment( "bg_longbarrel" )
+        lua/cfc_entity_stubber/stubbers
 
-    attachment.statModifiers = {
-        AimSpreadMult        = -0.1,
-        DamageMult           =  100,
-        OverallMouseSensMult = -0.1,
-        RecoilMult           =  0.1
-    }
+2. The main stubber looks through all the folders that the stubbers registered.
 
-    CustomizableWeaponry:registerAttachment(attachment)
-    if CLIENT then
-        attachment["description"] = {}
-        CustomizableWeaponry:createStatText(attachment)
-    end
-end )
-```
+    Looking at files in and it's 1 depth sub folders and registering the files found.
+
+        lua/cfc_entity_stubber/stubname
+    
+3. The main stubber includes all files found.
+
+This happens on InitPostEntity for both client and server.
