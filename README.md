@@ -5,7 +5,7 @@ One can create the stub files in `lua/cfc_entity_stubber/stubs/<pack>/<weapon_na
 
 The stubs are applied after all entities are loaded during server startup.
 
-
+X
 
 
 # Example weapon stub registration
