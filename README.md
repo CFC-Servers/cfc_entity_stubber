@@ -23,7 +23,7 @@ cfcEntityStubber.registerStub( function()
 end )
 ```
 
-# cfc_entity_stubber
+# Description
 This addon allows creation of "stubbers" and "stub" files. Stubbers are used to create functions for the specific stub files. Stub files allow the editor to make specific changes on weapons / entities without modifying the code of the entity.
 
 The stubs are applied after all entities are loaded during server startup, or on client after all entities initialized.
@@ -43,3 +43,49 @@ The stubs are applied after all entities are loaded during server startup, or on
 3. The main stubber includes all files found.
 
 This happens on InitPostEntity for both client and server.
+
+# Existing stubber examples ( M9k, CW, CW Attachments )
+
+M9k:
+
+```lua
+AddCSLuaFile()
+
+cfcEntityStubber.registerStub( function()
+    local weapon = cfcEntityStubber.getWeapon( "m9k_ak47" )
+    weapon.Primary.KickDown = 0.1
+    weapon.Primary.Damage = 10000
+    weapon.Primary.Spread = .08
+end ) 
+```
+
+CW:
+
+```lua
+AddCSLuaFile()
+
+cfcEntityStubber.registerStub( function()
+    local weapon = cfcEntityStubber.getWeapon( "cw_ak74" )
+    weapon.Shots = 1
+    weapon.Damage = 20
+    weapon.PrintName = "Stubbed gun!"
+end )
+```
+CW Attachments:
+
+```lua
+AddCSLuaFile()
+
+cfcEntityStubber.registerStub( function()
+    local attachment = cfcEntityStubber.getAttachment( "bg_longbarrel" )
+
+    attachment.statModifiers = {
+        AimSpreadMult = -0.1,
+        DamageMult = 100,
+        OverallMouseSensMult = -0.1,
+        RecoilMult = 0.1
+    }
+
+    cfcEntityStubber.applyAttachmentChange( attachment )
+end )
+```
