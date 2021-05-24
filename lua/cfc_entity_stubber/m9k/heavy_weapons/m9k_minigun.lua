@@ -1,4 +1,6 @@
 
+AddCSLuaFile()
+
 CFC_M9k_Stubber.registerStub( function()
     local SWEP = weapons.GetStored( "m9k_minigun" )
     
