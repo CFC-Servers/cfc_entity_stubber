@@ -16,5 +16,4 @@ CFC_M9k_Stubber.registerStub( function()
     SWEP.Primary.Damage = 6
     SWEP.Primary.Spread = .06
     SWEP.Primary.IronAccuracy = .08
-    
 end )
