@@ -1,4 +1,3 @@
-
 AddCSLuaFile()
 
 CFC_M9k_Stubber.registerStub( function()
