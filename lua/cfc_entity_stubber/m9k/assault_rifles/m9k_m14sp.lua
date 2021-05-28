@@ -1,10 +1,16 @@
-if SERVER then AddCSLuaFile() end
+AddCSLuaFile() 
 
 CFC_M9k_Stubber.registerStub( function()
-    local weapon = weapons.GetStored( "m9k_m14sp" )
+    local SWEP = cfcEntityStubber.getWeapon( "m9k_m14sp" )
 
-    weapon.Primary.RPM = 550
-    weapon.SelectiveFire = false
-    weapon.Primary.Damage = 55
-    weapon.Primary.Spread = .1
+    SWEP.Primary.RPM                = 550
+    SWEP.Primary.ClipSize           = 15        
+    SWEP.Primary.DefaultClip        = 60        
+    SWEP.Primary.KickUp             = 0.6        
+    SWEP.Primary.KickDown           = 0.6        
+    SWEP.Primary.KickHorizontal     = 0.6        
+
+    SWEP.SelectiveFire              = false
+    SWEP.Primary.Damage             = 55
+    SWEP.Primary.Spread             = .1
 end )
