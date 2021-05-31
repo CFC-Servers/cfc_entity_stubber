@@ -21,31 +21,26 @@ end
 function cfcEntityStubber.loadStubs( tab )
     for _, dir in ipairs( tab ) do
         local stubFolderPath = "cfc_entity_stubber/" .. dir .. "/"
-        -- List all stubs in the packs folder, sorted by names ascending
-        local stubFiles, stubFolders = file.Find( stubFolderPath .. "*", "LUA", "nameasc" )
+        local stubFiles, stubFolders = file.Find( stubFolderPath .. "*", "LUA" )
         local hasFiles = table.IsEmpty( stubFiles )
         local hasFolders = table.IsEmpty( stubFolders )
 
         if hasFiles and hasFolders then
             cfcEntityStubber.printMessage( "folder " .. dir .. " is empty or doesn't exist.", Color( 255, 0, 0 ) )
 
-            return
+            continue
         end
 
-        if not hasFolders then
-            for _, stubFile in ipairs( stubFolders ) do
-                local subfolderPath = stubFolderPath .. stubFile
-                local subfolderFiles = file.Find( subfolderPath .. "/*.lua", "LUA", "nameasc" )
-
-                for _, fileName in pairs( subfolderFiles ) do
-                    include( subfolderPath .. "/" .. fileName )
-                end
-            end
+        for _, stubFile in ipairs( stubFiles ) do
+            include( stubFolderPath .. stubFile )
         end
 
-        if not hasFiles then
-            for _, stubFile in ipairs( stubFiles ) do
-                include( stubFolderPath .. stubFile )
+        for _, stubFile in ipairs( stubFolders ) do
+            local subfolderPath = stubFolderPath .. stubFile .. "/"
+            local subfolderFiles = file.Find( subfolderPath .. "*.lua", "LUA", "nameasc" )
+
+            for _, fileName in pairs( subfolderFiles ) do
+                include( subfolderPath .. fileName )
             end
         end
     end
@@ -53,7 +48,7 @@ end
 
 function cfcEntityStubber.runStubs( stubQueue )
     for _, stub in pairs( stubQueue ) do
-        stub()
+        ProtectedCall( stub() )
     end
 end
 
