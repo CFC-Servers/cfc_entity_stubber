@@ -51,7 +51,7 @@ end
 
 function cfcEntityStubber.runStubs( stubQueue )
     for _, stub in pairs( stubQueue ) do
-        ProtectedCall( stub() )
+        ProtectedCall( stub )
     end
 end
 
