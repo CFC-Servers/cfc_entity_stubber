@@ -1,6 +1,6 @@
 AddCSLuaFile() 
 
-CFC_M9k_Stubber.registerStub( function()
+cfcEntityStubber.registerStub( function()
     local SWEP = cfcEntityStubber.getWeapon( "m9k_an94" )
 
     SWEP.Primary.RPM                = 600

@@ -1,6 +1,6 @@
 AddCSLuaFile()
 
-CFC_M9k_Stubber.registerStub( function()
+cfcEntityStubber.registerStub( function()
     local SWEP = cfcEntityStubber.getWeapon( "m9k_minigun" )
     
     SWEP.Primary.RPM                = 1500
@@ -17,4 +17,3 @@ CFC_M9k_Stubber.registerStub( function()
     SWEP.Primary.Spread             = .06
     SWEP.Primary.IronAccuracy       = .08
 end )
-
