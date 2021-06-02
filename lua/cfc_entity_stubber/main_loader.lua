@@ -21,12 +21,11 @@ end
 function cfcEntityStubber.loadStub( dir )
     local stubFolderPath = "cfc_entity_stubber/" .. dir .. "/"
     local stubFiles, stubFolders = file.Find( stubFolderPath .. "*", "LUA" )
-    local hasFiles = table.IsEmpty( stubFiles )
-    local hasFolders = table.IsEmpty( stubFolders )
+    local noFiles = table.IsEmpty( stubFiles )
+    local noFolders = table.IsEmpty( stubFolders )
 
-    if hasFiles and hasFolders then
+    if noFiles and noFolders then
         cfcEntityStubber.printMessage( "folder " .. dir .. " is empty or doesn't exist.", Color( 255, 0, 0 ) )
-
         return
     end
 
