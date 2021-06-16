@@ -18,42 +18,40 @@ function cfcEntityStubber.includeStubbers()
     end
 end
 
+function cfcEntityStubber.loadStub( dir )
+    local stubFolderPath = "cfc_entity_stubber/" .. dir .. "/"
+    local stubFiles, stubFolders = file.Find( stubFolderPath .. "*", "LUA" )
+    local noFiles = table.IsEmpty( stubFiles )
+    local noFolders = table.IsEmpty( stubFolders )
+
+    if noFiles and noFolders then
+        cfcEntityStubber.printMessage( "folder " .. dir .. " is empty or doesn't exist.", Color( 255, 0, 0 ) )
+        return
+    end
+
+    for _, stubFile in ipairs( stubFiles ) do
+        include( stubFolderPath .. stubFile )
+    end
+
+    for _, stubFile in ipairs( stubFolders ) do
+        local subfolderPath = stubFolderPath .. stubFile .. "/"
+        local subfolderFiles = file.Find( subfolderPath .. "*.lua", "LUA", "nameasc" )
+
+        for _, fileName in pairs( subfolderFiles ) do
+            include( subfolderPath .. fileName )
+        end
+    end
+end
+
 function cfcEntityStubber.loadStubs( tab )
     for _, dir in ipairs( tab ) do
-        local stubFolderPath = "cfc_entity_stubber/" .. dir .. "/"
-        -- List all stubs in the packs folder, sorted by names ascending
-        local stubFiles, stubFolders = file.Find( stubFolderPath .. "*", "LUA", "nameasc" )
-        local hasFiles = table.IsEmpty( stubFiles )
-        local hasFolders = table.IsEmpty( stubFolders )
-
-        if hasFiles and hasFolders then
-            cfcEntityStubber.printMessage( "folder " .. dir .. " is empty or doesn't exist.", Color( 255, 0, 0 ) )
-
-            return
-        end
-
-        if not hasFolders then
-            for _, stubFile in ipairs( stubFolders ) do
-                local subfolderPath = stubFolderPath .. stubFile
-                local subfolderFiles = file.Find( subfolderPath .. "/*.lua", "LUA", "nameasc" )
-
-                for _, fileName in pairs( subfolderFiles ) do
-                    include( subfolderPath .. "/" .. fileName )
-                end
-            end
-        end
-
-        if not hasFiles then
-            for _, stubFile in ipairs( stubFiles ) do
-                include( stubFolderPath .. stubFile )
-            end
-        end
+        cfcEntityStubber.loadStub( dir )
     end
 end
 
 function cfcEntityStubber.runStubs( stubQueue )
     for _, stub in pairs( stubQueue ) do
-        stub()
+        ProtectedCall( stub )
     end
 end
 
