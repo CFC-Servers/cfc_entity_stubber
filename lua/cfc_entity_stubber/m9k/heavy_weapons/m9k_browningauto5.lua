@@ -2,7 +2,7 @@ AddCSLuaFile()
 
 cfcEntityStubber.registerStub( function()
     local weapon = cfcEntityStubber.getWeapon( "m9k_browningauto5" )
-    weapon.Primary.RPM = 250
+    weapon.Primary.RPM = 200
     weapon.Primary.ClipSize = 6
     weapon.Primary.DefaultClip = 30
     weapon.Primary.KickUp = 1
@@ -11,7 +11,7 @@ cfcEntityStubber.registerStub( function()
     weapon.Primary.Automatic = false
     weapon.Primary.Ammo = "buckshot"
     weapon.Primary.NumShots = 9//howmanybulletstoshoot,usewithshotguns
-    weapon.Primary.Damage = 10//basedamage,scaledbygame
-    weapon.Primary.Spread = .03//definefrom
-    weapon.Primary.IronAccuracy = .03//hastobethesameasprimary.spread
+    weapon.Primary.Damage = 3	--basedamage,scaledbygame
+    weapon.Primary.Spread = .05	--definefrom-the-hipaccuracy(1isterrible,.0001isexact)
+    weapon.Primary.IronAccuracy = .05--hastobethesameasprimary.spread
 end )

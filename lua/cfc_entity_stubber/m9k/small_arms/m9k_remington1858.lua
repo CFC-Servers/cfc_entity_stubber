@@ -2,7 +2,7 @@ AddCSLuaFile()
 
 cfcEntityStubber.registerStub( function()
     local weapon = cfcEntityStubber.getWeapon( "m9k_remington1858" )
-    weapon.Primary.RPM = 150
+    weapon.Primary.RPM = 300
     weapon.Primary.ClipSize = 6
     weapon.Primary.DefaultClip = 30
     weapon.Primary.KickUp = 0.9

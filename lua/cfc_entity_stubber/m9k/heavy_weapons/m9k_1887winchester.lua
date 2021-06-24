@@ -2,7 +2,7 @@ AddCSLuaFile()
 
 cfcEntityStubber.registerStub( function()
     local weapon = cfcEntityStubber.getWeapon( "m9k_1887winchester" )
-    weapon.Primary.RPM = 70
+    weapon.Primary.RPM = 60
     weapon.Primary.ClipSize = 4
     weapon.Primary.DefaultClip = 12
     weapon.Primary.KickUp = 1
@@ -11,7 +11,7 @@ cfcEntityStubber.registerStub( function()
     weapon.Primary.Automatic = false
     weapon.Primary.Ammo = "slam"
     weapon.Primary.NumShots = 10
-    weapon.Primary.Damage = 10
+    weapon.Primary.Damage = 5
     weapon.Primary.Spread = .042
     weapon.Primary.IronAccuracy = .042
 end )
