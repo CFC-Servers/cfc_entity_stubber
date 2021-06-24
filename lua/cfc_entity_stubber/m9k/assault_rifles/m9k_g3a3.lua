@@ -11,7 +11,7 @@ cfcEntityStubber.registerStub( function()
     weapon.Primary.Automatic = true
     weapon.Primary.Ammo = "ar2"
     weapon.Primary.NumShots = 1
-    weapon.Primary.Damage = 33
-    weapon.Primary.Spread = .026
+    weapon.Primary.Damage = 25
+    weapon.Primary.Spread = .08
     weapon.Primary.IronAccuracy = .016
 end )
