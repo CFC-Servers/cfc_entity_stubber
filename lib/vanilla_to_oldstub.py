@@ -16,7 +16,7 @@ for foldername in os.listdir("newstubberfiles"):
             newstubContent = newstub.readlines()
             if not os.path.isfile( "oldstubberfiles/" + foldername + "/" + classname ):
                 print( "oldstubberfiles/" + foldername + "/" + classname + " not found in old stubs, copy pasting new stub" )
-                outputfile = open( "output/" + foldername + "/" + classname + ".lua", "a", encoding="utf-8" )
+                outputfile = open( "output/" + foldername + "/" + classname, "a", encoding="utf-8" )
                 for line in newstubContent:
                     outputfile.write( line )
             else:
