@@ -10,8 +10,8 @@ cfcEntityStubber.registerStub( function()
     weapon.Primary.KickHorizontal = 0.6
     weapon.Primary.Automatic = false
     weapon.Primary.Ammo = "buckshot"
-    weapon.Primary.NumShots = 9//howmanybulletstoshoot,usewithshotguns
-    weapon.Primary.Damage = 3	--basedamage,scaledbygame
-    weapon.Primary.Spread = .05	--definefrom-the-hipaccuracy(1isterrible,.0001isexact)
-    weapon.Primary.IronAccuracy = .05--hastobethesameasprimary.spread
+    weapon.Primary.NumShots = 9
+    weapon.Primary.Damage = 3
+    weapon.Primary.Spread = .05
+    weapon.Primary.IronAccuracy = .05
 end )
