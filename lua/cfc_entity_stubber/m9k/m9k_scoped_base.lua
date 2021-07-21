@@ -41,6 +41,24 @@ cfcEntityStubber.registerStub( function()
         end
     end
 
+    function SWEP:Reload()
+        if SERVER and game.SinglePlayer() then self:CallOnClient("Reload") end
+
+        if self:GetNWInt("ScopeState") > 0 then
+            owner:SetFOV( 0, 0.1 )
+            self.DrawCrosshair = true
+            self:SetNWInt( "ScopeState", 0 )
+            owner:DrawViewModel( true )
+            owner:EmitSound("weapons/zoom.wav")
+            self.NextReloadTime = CurTime() + 0.5
+        end
+
+        if self.CanReload and self.NextReloadTime < CurTime() and self:GetOwner():GetAmmoCount(self.Primary.Ammo) >= 1 and self:Clip1() < self:GetMaxClip1() then
+            self:DefaultReload(ACT_VM_RELOAD)
+            self:GetOwner():SetAnimation(PLAYER_RELOAD)
+        end
+    end
+
     function weapon:SecondaryAttack()
         return false
     end
