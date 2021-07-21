@@ -4,28 +4,43 @@ cfcEntityStubber.registerStub( function()
     local weapon = cfcEntityStubber.getWeapon( "bobs_scoped_base" )
     weapon.ShouldDoMoveSpread = false
 
+    function weapon:ScopeIN()
+        local owner = self:GetOwner()
+
+        timer.Remove("m9k_resetscope_" .. self.OurIndex)
+        owner:SetFOV( 10, 0.2 )
+        self.DrawCrosshair = false
+        self:SetNWInt( "ScopeState", 100 )
+        owner:DrawViewModel( false )
+        owner:EmitSound("weapons/zoom.wav")
+    end
+
+    function weapon:ScopeOUT()
+        local owner = self:GetOwner()
+
+        owner:SetFOV( 0, 0.1 )
+        self.DrawCrosshair = true
+        self:SetNWInt( "ScopeState", 0 )
+        owner:DrawViewModel( true )
+        owner:EmitSound("weapons/zoom.wav")
+    end
+
     function weapon:IronSight()
         local owner = self:GetOwner()
+        local scopeState = self:GetNWInt("ScopeState")
+
         if owner:GetViewEntity() ~= owner or not self:GetNWBool("CanIronSights") then return end
 
-        if self:GetNWInt("ScopeState") == 0 then
+        if scopeState == 0 then
             owner:DrawViewModel( true )
         else
             owner:DrawViewModel( false )
         end
 
         if owner:KeyPressed( IN_ATTACK2 ) then
-            owner:SetFOV( 10, 0.2 )
-            self.DrawCrosshair = false
-            self:SetNWInt( "ScopeState", 1 )
-            owner:DrawViewModel( false )
-            owner:EmitSound("weapons/zoom.wav")
+            self:ScopeIN()
         elseif owner:KeyReleased( IN_ATTACK2 ) then
-            owner:SetFOV( 0, 0.1 )
-            self.DrawCrosshair = true
-            self:SetNWInt( "ScopeState", 0 )
-            owner:DrawViewModel( true )
-            owner:EmitSound("weapons/zoom.wav")
+            self:ScopeOUT()
         end
     end
 
@@ -69,6 +84,9 @@ cfcEntityStubber.registerStub( function()
     end
 
     function weapon:SecondaryAttack()
-        return false
+        print( self:GetNWInt("ScopeState")  )
+        if self:GetNWInt("ScopeState") == 99 then
+            self:ScopeIN()
+        end
     end
 end )
