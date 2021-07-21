@@ -18,6 +18,7 @@ cfcEntityStubber.registerStub( function()
     function weapon:ScopeOUT()
         local owner = self:GetOwner()
 
+        timer.Remove("m9k_resetscope_" .. self.OurIndex)
         owner:SetFOV( 0, 0.1 )
         self.DrawCrosshair = true
         self:SetNWInt( "ScopeState", 0 )
