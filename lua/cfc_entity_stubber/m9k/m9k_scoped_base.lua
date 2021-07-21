@@ -8,10 +8,16 @@ cfcEntityStubber.registerStub( function()
         local owner = self:GetOwner()
         if owner:GetViewEntity() ~= owner or not self:GetNWBool("CanIronSights") then return end
 
+        if self:GetNWInt("ScopeState") == 0 then
+            owner:DrawViewModel( true )
+        else
+            owner:DrawViewModel( false )
+        end
+
         if owner:KeyPressed( IN_ATTACK2 ) then
             owner:SetFOV( 10, 0.2 )
             self.DrawCrosshair = false
-            self:SetNWInt( "ScopeState", 10000 )
+            self:SetNWInt( "ScopeState", 1 )
             owner:DrawViewModel( false )
             owner:EmitSound("weapons/zoom.wav")
         elseif owner:KeyReleased( IN_ATTACK2 ) then
@@ -21,13 +27,6 @@ cfcEntityStubber.registerStub( function()
             owner:DrawViewModel( true )
             owner:EmitSound("weapons/zoom.wav")
         end
-    end
-
-    local stubFunc = weapon:PrimaryAttack()
-
-    function weapon:PrimaryAttack()
-        owner:DrawViewModel( true )
-        stubFunc()
     end
 
     function weapon:Think()
@@ -43,7 +42,7 @@ cfcEntityStubber.registerStub( function()
     function weapon:AdjustMouseSensitivity()
         local Scope = self:GetNWInt( "ScopeState" )
 
-        if Scope == 1 then
+        if Scope ~= 0 then
             return 0.1
         end
     end
