@@ -84,7 +84,6 @@ cfcEntityStubber.registerStub( function()
     end
 
     function weapon:SecondaryAttack()
-        print( self:GetNWInt("ScopeState")  )
         if self:GetNWInt("ScopeState") == 99 then
             self:ScopeIN()
         end
