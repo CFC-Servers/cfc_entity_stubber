@@ -51,11 +51,17 @@ end
 
 function cfcEntityStubber.runStubs( stubQueue )
     for _, stub in pairs( stubQueue ) do
-        local function catch( err )
-            cfcEntityStubber.printMessage( "ERROR: " .. err, Color( 255, 125, 0 ) )
+        if SERVER then
+            ProtectedCall( stub )
         end
 
-        xpcall( stub, catch )
+        if CLIENT then
+            local function catch( err )
+                cfcEntityStubber.printMessage( "ERROR: " .. err, Color( 255, 125, 0 ) )
+            end
+
+            xpcall( stub, catch )
+        end
     end
 end
 
