@@ -1,12 +1,16 @@
-SWEP.Base = "m9k_model500"
-SWEP.Category = "CFC9k Pistols"
-SWEP.Spawnable = true
+AddCSLuaFile()
 
-SWEP.Primary.RPM = 45
-SWEP.Primary.ClipSize = 5
+cfcEntityStubber.registerStub( function()
+    local weapon = cfcEntityStubber.getWeapon( "m9k_model500" )
+    weapon.Category = "CFC9k Pistols"
+    weapon.Spawnable = true
 
-SWEP.Primary.KickUp = 5
-SWEP.Primary.KickDown = 3
-SWEP.Primary.KickHorizontal = 3
-SWEP.Primary.Damage = 85
-SWEP.Primary.Spread = 0.25
+    weapon.Primary.RPM = 45
+    weapon.Primary.ClipSize = 5
+
+    weapon.Primary.KickUp = 5
+    weapon.Primary.KickDown = 3
+    weapon.Primary.KickHorizontal = 3
+    weapon.Primary.Damage = 85
+    weapon.Primary.Spread = 0.25
+end )
