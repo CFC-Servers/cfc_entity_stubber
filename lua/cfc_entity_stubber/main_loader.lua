@@ -76,8 +76,10 @@ function cfcEntityStubber.registerStub( stub )
 end
 
 function cfcEntityStubber.getWeapon( wepClass )
-    weapon = weapons.GetStored( wepClass )
-    cfcEntityStubber.oldWeaponStats[wepClass] = weapon
+    local weapon = weapons.GetStored( wepClass )
+
+    local current = cfcEntityStubber.oldWeaponStats[wepClass]
+    cfcEntityStubber.oldWeaponStats[wepClass] = current or weapon
 
     return weapon
 end
