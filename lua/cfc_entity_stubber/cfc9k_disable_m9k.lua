@@ -6,7 +6,7 @@ base.AdminSpawnable = true
 base.ShouldDoMoveSpread = false
 
 base.OriginalShootBullet = base.ShootBullet
-base.ShootBullet = function( damage, _, numBullets, spread )
+base.ShootBullet = function( self, damage, _, numBullets, spread )
     if self.IronSightState then
         spread = self.IronAccuracy or spread
     end
