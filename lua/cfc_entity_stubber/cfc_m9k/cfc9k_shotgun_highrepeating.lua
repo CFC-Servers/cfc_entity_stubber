@@ -12,7 +12,7 @@ cfcEntityStubber.registerStub( function()
     weapon.Primary.KickDown = 1
     weapon.Primary.KickHorizontal = 2.5
     weapon.Primary.Automatic = true
-    weapon.Primary.NumShots = 9
+    weapon.Primary.NumShots = 12
     weapon.Primary.Damage = 4
     weapon.Primary.Spread = 0.15
     weapon.ShellTime = 0.09
