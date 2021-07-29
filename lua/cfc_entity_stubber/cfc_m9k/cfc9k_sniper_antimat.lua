@@ -12,5 +12,6 @@ cfcEntityStubber.registerStub( function()
     weapon.Primary.KickDown = 1
     weapon.Primary.KickHorizontal = 5
     weapon.Primary.Damage = 5000
-    weapon.Primary.Spread = 0.3
+    weapon.Primary.Spread = 0.17
+	weapon.Primary.IronAccuracy = 0.02
 end )
