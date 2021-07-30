@@ -2,7 +2,7 @@ AddCSLuaFile()
 
 cfcEntityStubber.registerStub( function()
     local weapons = {
-        "m9k_ithaca37",
+        "m9k_ithacam37",
         "m9k_1887winchester"
     }
 
