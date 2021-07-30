@@ -1,20 +1,29 @@
 AddCSLuaFile()
 
 cfcEntityStubber.registerStub( function()
-    local weapon = cfcEntityStubber.getWeapon( "m9k_m4a1" )
-    weapon.Category = "CFC9k Assault Rifles"
-    weapon.Spawnable = true
+    local weapons = {
+        "m9k_m4a1",
+        "m9k_acr",
+        "m9k_m416",
+        "m9k_amd65",
+        "m9k_l85"
+    }
 
-    weapon.Primary.RPM = 700
-    weapon.Primary.ClipSize = 30
+    for _, weaponClass in ipairs( weapons ) do
+        local weapon = cfcEntityStubber.getWeapon( weaponClass )
+        weapon.Purpose = ""
+        weapon.CFC_Category = "Rifle:Base"
 
-    weapon.Primary.KickUp = 0.8
-    weapon.Primary.KickDown = 0.5
-    weapon.Primary.KickHorizontal = 0.3
-    weapon.Primary.Automatic = true
-    weapon.Primary.Ammo = "ar2"
-    weapon.Primary.NumShots = 1
-    weapon.Primary.Damage = 25
-    weapon.Primary.Spread = 0.05
-	weapon.Primary.IronAccuracy = 0.02
+        weapon.Primary.RPM = 700
+        weapon.Primary.ClipSize = 30
+        weapon.Primary.KickUp = 0.8
+        weapon.Primary.KickDown = 0.5
+        weapon.Primary.KickHorizontal = 0.3
+        weapon.Primary.Automatic = true
+        weapon.Primary.Ammo = "ar2"
+        weapon.Primary.NumShots = 1
+        weapon.Primary.Damage = 25
+        weapon.Primary.Spread = 0.05
+        weapon.Primary.IronAccuracy = 0.02
+    end
 end )
