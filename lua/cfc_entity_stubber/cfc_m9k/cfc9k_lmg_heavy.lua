@@ -7,7 +7,7 @@ cfcEntityStubber.registerStub( function()
     }
 
     for _, weaponClass in ipairs( weapons ) do
-        local weapon = cfcEntityStubber.getWeapon( "m9k_m60" )
+        local weapon = cfcEntityStubber.getWeapon( weaponClass )
         weapon.Purpose = ""
         weapon.CFC_Category = "LMG:Heavy"
 
