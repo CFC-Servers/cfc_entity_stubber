@@ -11,7 +11,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Purpose = ""
         weapon.CFC_Category = "Rifle:Marksman"
 
-        weapon.Primary.RPM = 400
+        weapon.Primary.RPM = 350
         weapon.Primary.ClipSize = 15
         weapon.Primary.KickUp = 2
         weapon.Primary.KickDown = 1
