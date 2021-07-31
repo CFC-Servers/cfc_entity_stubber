@@ -8,7 +8,8 @@ cfcEntityStubber.registerStub( function()
         "m9k_remington1858",
         "m9k_model3russian",
         "m9k_model627",
-		"m9k_deagle"
+		"m9k_deagle",
+		"m9k_m29satan"
     }
 
     for _, weaponClass in pairs( weapons ) do
