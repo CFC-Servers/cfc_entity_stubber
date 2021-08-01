@@ -6,7 +6,6 @@ cfcEntityStubber.registerStub( function()
         "m9k_m16a4_acog",
         "m9k_g3a3",
         "m9k_fal",
-        "m9k_sl8"
     }
 
     for _, weaponClass in ipairs( weapons ) do
