@@ -5,6 +5,7 @@ cfcEntityStubber.registerStub( function()
         "m9k_m14sp",
         "m9k_winchester73",
 		"m9k_sl8",
+		"m9k_remington7615p"
     }
 
     for _, weaponClass in ipairs( weapons ) do
@@ -18,7 +19,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.KickDown = 1
         weapon.Primary.KickHorizontal = 0.3
         weapon.Primary.Automatic = false
-        weapon.Primary.Ammo = "ar2"
+        weapon.Primary.Ammo = "AirboatGun"
         weapon.Primary.Damage = 55
         weapon.Primary.Spread = 0.08
         weapon.Primary.IronAccuracy = 0.001
