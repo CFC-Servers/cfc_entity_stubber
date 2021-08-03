@@ -9,6 +9,8 @@ cfcEntityStubber.registerStub( function()
         local weapon = cfcEntityStubber.getWeapon( weaponClass )
         weapon.Purpose = ""
         weapon.CFC_Category = "LMG:Suppression"
+		
+		weapon.Primary.Sound = "Weapon_FAMTC.Single"
 
         weapon.Primary.RPM = 700
         weapon.Primary.ClipSize = 150
