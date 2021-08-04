@@ -29,6 +29,9 @@ cfcEntityStubber.registerStub( function()
 end )
 
 cfcEntityStubber.registerStub( function()
-    local weapon = "m9k_l85"
+    local weapon = {
+		"m9k_l85"
+	}
     weapon.Primary.Sound = "an94.Single"
+	end
 end )

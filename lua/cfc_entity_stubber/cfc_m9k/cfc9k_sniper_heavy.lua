@@ -24,7 +24,9 @@ cfcEntityStubber.registerStub( function()
 end )
 
 cfcEntityStubber.registerStub( function()
-    local weapons = "contender"
+    local weapons = {
+		"contender"
+	}
 	
     for _, weaponClass in ipairs( weapons ) do
         local weapon = cfcEntityStubber.getWeapon( weaponClass )
