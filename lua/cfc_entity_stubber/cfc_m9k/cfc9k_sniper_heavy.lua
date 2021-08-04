@@ -4,8 +4,7 @@ cfcEntityStubber.registerStub( function()
     local weapons = {
         "m9k_aw50",
         "m9k_m98b",
-        "m9k_intervention",
-        "m9k_contender"
+        "m9k_intervention"
     }
 
     for _, weaponClass in ipairs( weapons ) do
@@ -25,6 +24,21 @@ cfcEntityStubber.registerStub( function()
 end )
 
 cfcEntityStubber.registerStub( function()
-    local weapon = "m9k_contender"
-    weapon.Primary.ClipSize = 1
+    local weapons = "contender"
+    for _, weaponClass in ipairs( weapons ) do
+        local weapon = cfcEntityStubber.getWeapon( weaponClass )
+        weapon.Purpose = ""
+        weapon.CFC_Category = "Sniper:Heavy"
+
+        weapon.Primary.RPM = 50
+        weapon.Primary.ClipSize = 1
+        weapon.Primary.KickUp = 2
+        weapon.Primary.KickDown = 1
+        weapon.Primary.KickHorizontal = 0.3
+        weapon.Primary.Automatic = false
+        weapon.Primary.Ammo = "AirboatGun"
+        weapon.Primary.Damage = 70
+        weapon.Primary.Spread = 0.08
+        weapon.Primary.IronAccuracy = 0.001
+    end
 end )
