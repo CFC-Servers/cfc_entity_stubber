@@ -29,9 +29,15 @@ cfcEntityStubber.registerStub( function()
 end )
 
 cfcEntityStubber.registerStub( function()
-    local weapon = {
-		"m9k_l85"
-	}
-    weapon.Primary.Sound = "an94.Single"
-	end
+    local weapons = {
+        "m9k_l85"
+    }
+
+    for _, weaponClass in ipairs( weapons ) do
+        local weapon = cfcEntityStubber.getWeapon( weaponClass )
+        weapon.Purpose = ""
+        weapon.CFC_Category = "Rifle:Base"
+
+		weapon.Primary.Sound = "an94.Single"
+    end
 end )

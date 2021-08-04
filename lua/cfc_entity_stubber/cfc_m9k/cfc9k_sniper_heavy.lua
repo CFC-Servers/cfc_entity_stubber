@@ -25,7 +25,7 @@ end )
 
 cfcEntityStubber.registerStub( function()
     local weapons = {
-		"contender"
+		"m9k_contender"
 	}
 	
     for _, weaponClass in ipairs( weapons ) do
