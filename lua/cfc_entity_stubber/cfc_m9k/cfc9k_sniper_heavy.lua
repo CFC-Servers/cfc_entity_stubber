@@ -25,6 +25,7 @@ end )
 
 cfcEntityStubber.registerStub( function()
     local weapons = "contender"
+	
     for _, weaponClass in ipairs( weapons ) do
         local weapon = cfcEntityStubber.getWeapon( weaponClass )
         weapon.Purpose = ""
@@ -32,11 +33,10 @@ cfcEntityStubber.registerStub( function()
 
         weapon.Primary.RPM = 50
         weapon.Primary.ClipSize = 1
-        weapon.Primary.KickUp = 2
-        weapon.Primary.KickDown = 1
-        weapon.Primary.KickHorizontal = 0.3
+        weapon.Primary.KickUp = 4
+        weapon.Primary.KickDown = 6
+        weapon.Primary.KickHorizontal = 8
         weapon.Primary.Automatic = false
-        weapon.Primary.Ammo = "AirboatGun"
         weapon.Primary.Damage = 70
         weapon.Primary.Spread = 0.08
         weapon.Primary.IronAccuracy = 0.001
