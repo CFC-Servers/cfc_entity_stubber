@@ -23,3 +23,8 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.IronAccuracy = 0.018
     end
 end )
+
+cfcEntityStubber.registerStub( function()
+    local weapon = "m9k_contender"
+    weapon.Primary.ClipSize = 1
+end )

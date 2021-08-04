@@ -24,3 +24,9 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.IronAccuracy = 0.001
     end
 end )
+
+cfcEntityStubber.registerStub( function()
+    local weapon = "m9k_winchester73"
+    weapon.Primary.RPM = 66
+	weapon.Primary.Damage = 70
+end )
