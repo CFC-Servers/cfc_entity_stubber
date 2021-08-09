@@ -10,7 +10,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Purpose = ""
         weapon.CFC_Category = "LMG:Suppression"
 		
-		weapon.Primary.Sound = "pkm.Single"
+		weapon.Primary.Sound = "BlackVulcan.Single"
 
         weapon.Primary.RPM = 700
         weapon.Primary.ClipSize = 150
