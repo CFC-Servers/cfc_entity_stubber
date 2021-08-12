@@ -50,3 +50,17 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.IronAccuracy = 0.015
     end
 end )
+
+cfcEntityStubber.registerStub( function()
+    local weapons = {
+        "m9k_scoped_taurus"
+    }
+
+    for _, weaponClass in ipairs( weapons ) do
+        local weapon = cfcEntityStubber.getWeapon( weaponClass )
+        weapon.Purpose = ""
+        weapon.CFC_Category = "Pistol:Revolver"
+
+		weapon.Primary.SpreadZoomed = .0015
+    end
+end )

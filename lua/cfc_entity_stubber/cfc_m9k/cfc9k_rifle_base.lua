@@ -39,5 +39,6 @@ cfcEntityStubber.registerStub( function()
         weapon.CFC_Category = "Rifle:Base"
 
 		weapon.Primary.Sound = "an94.Single"
+		weapon.Primary.SpreadZoomed = 0.01
     end
 end )
