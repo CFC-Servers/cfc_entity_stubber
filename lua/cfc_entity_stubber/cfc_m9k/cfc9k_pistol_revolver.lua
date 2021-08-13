@@ -26,41 +26,16 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.NumShots = 1
         weapon.Primary.IronAccuracy = 0.009
     end
-end )
-
-cfcEntityStubber.registerStub( function()
-    local weapons = {
-	    "m9k_remington1858"
-    }
 	
-    for _, weaponClass in ipairs( weapons ) do
-        local weapon = cfcEntityStubber.getWeapon( weaponClass )
-        weapon.Purpose = ""
-        weapon.CFC_Category = "Pistol:Revolver"
+	local weapon
 
-        weapon.Primary.RPM = 275
-        weapon.Primary.ClipSize = 6
-        weapon.Primary.KickUp = 4
-        weapon.Primary.KickDown = 0.3
-        weapon.Primary.KickHorizontal = 1.5
-        weapon.Primary.Automatic = false
-        weapon.Primary.Damage = 50
-        weapon.Primary.Spread = 0.02
-		weapon.Primary.NumShots = 1
-        weapon.Primary.IronAccuracy = 0.015
-    end
-end )
-
-cfcEntityStubber.registerStub( function()
-    local weapons = {
-        "m9k_scoped_taurus"
-    }
-
-    for _, weaponClass in ipairs( weapons ) do
-        local weapon = cfcEntityStubber.getWeapon( weaponClass )
-        weapon.Purpose = ""
-        weapon.CFC_Category = "Pistol:Revolver"
-
-		weapon.Primary.SpreadZoomed = .0015
-    end
+	weapon = cfcEntityStubber.getWeapon( "m9k_remington1858" )
+	weapon.Primary.RPM = 275
+	weapon.Primary.Damage = 50
+	weapon.Primary.Spread = 0.02
+	weapon.Primary.IronAccuracy = 0.015
+	
+	weapon = cfcEntityStubber.getWeapon( "m9k_scoped_taurus" )
+	weapon.Primary.SpreadZoomed = .0015
+	
 end )
