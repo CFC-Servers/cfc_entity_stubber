@@ -26,11 +26,19 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.Spread = 0.05
         weapon.Primary.IronAccuracy = 0.01
     end
+end )
 
-	local weapon
-	
-	weapon = cfcEntityStubber.getWeapon( "m9k_l85" )
-	weapon.Primary.Sound = "an94.Single"
-	weapon.Primary.SpreadZoomed = 0.01
+cfcEntityStubber.registerStub( function()
+    local weapons = {
+        "m9k_l85"
+    }
 
+    for _, weaponClass in ipairs( weapons ) do
+        local weapon = cfcEntityStubber.getWeapon( weaponClass )
+        weapon.Purpose = ""
+        weapon.CFC_Category = "Rifle:Base"
+
+		weapon.Primary.Sound = "an94.Single"
+		weapon.Primary.SpreadZoomed = 0.01
+    end
 end )
