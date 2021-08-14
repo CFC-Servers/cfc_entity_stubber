@@ -61,6 +61,6 @@ cfcEntityStubber.registerStub( function()
         weapon.Purpose = ""
         weapon.CFC_Category = "Pistol:Revolver"
 
-		weapon.Primary.SpreadZoomed = .0015
+		weapon.Base = "bobs_gun_base"
     end
 end )
