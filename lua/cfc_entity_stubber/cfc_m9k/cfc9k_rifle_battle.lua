@@ -15,12 +15,12 @@ cfcEntityStubber.registerStub( function()
 
         weapon.Primary.RPM = 400
         weapon.Primary.ClipSize = 20
-        weapon.Primary.KickUp = 1.3
+        weapon.Primary.KickUp = 1.2
         weapon.Primary.KickDown = 0.4
-        weapon.Primary.KickHorizontal = 0.4
+        weapon.Primary.KickHorizontal = 0.3
         weapon.Primary.Damage = 45
-        weapon.Primary.Spread = 0.07
-        weapon.Primary.IronAccuracy = 0.008
+        weapon.Primary.Spread = 0.06
+        weapon.Primary.IronAccuracy = 0.005
     end
 end )
 

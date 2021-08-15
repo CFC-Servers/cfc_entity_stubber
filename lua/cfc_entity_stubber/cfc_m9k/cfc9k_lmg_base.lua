@@ -13,12 +13,12 @@ cfcEntityStubber.registerStub( function()
 
         weapon.Primary.RPM = 700
         weapon.Primary.ClipSize = 100
-        weapon.Primary.KickUp = 1.3
-        weapon.Primary.KickDown = 0.7
-        weapon.Primary.KickHorizontal = 0.75
+        weapon.Primary.KickUp = 1.2
+        weapon.Primary.KickDown = 0.6
+        weapon.Primary.KickHorizontal = 0.6
         weapon.Primary.Damage = 25
-        weapon.Primary.Spread = 0.05
-        weapon.Primary.IronAccuracy = 0.01
+        weapon.Primary.Spread = 0.04
+        weapon.Primary.IronAccuracy = 0.009
 		weapon.Primary.Ammo = "AirboatGun"
     end
 end )
