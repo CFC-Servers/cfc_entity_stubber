@@ -23,3 +23,17 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.IronAccuracy = 0.008
     end
 end )
+
+cfcEntityStubber.registerStub( function()
+    local weapons = {
+        "m9k_m16a4_acog"
+    }
+
+    for _, weaponClass in ipairs( weapons ) do
+        local weapon = cfcEntityStubber.getWeapon( weaponClass )
+        weapon.Purpose = ""
+        weapon.CFC_Category = "Rifle:Battle"
+
+		weapon.Primary.SpreadZoomed = 0.008
+    end
+end )
