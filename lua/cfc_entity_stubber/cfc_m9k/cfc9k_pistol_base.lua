@@ -14,7 +14,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.RPM = 500
         weapon.Primary.ClipSize = 12
         weapon.Primary.KickUp = 1.2
-        weapon.Primary.KickDown = 0
+        weapon.Primary.KickDown = 0.4
         weapon.Primary.KickHorizontal = 0.25
         weapon.Primary.Automatic = false
         weapon.Primary.Ammo = "pistol"
