@@ -87,4 +87,6 @@ hook.Add( "InitPostEntity", "StubberStart", function()
     cfcEntityStubber.includeStubbers()
     cfcEntityStubber.loadStubs( cfcEntityStubber.stubbers )
     cfcEntityStubber.runStubs( cfcEntityStubber.stubQueue )
+
+    hook.Run( "CFC_EntityStubber_PostRunStubs" )
 end )
