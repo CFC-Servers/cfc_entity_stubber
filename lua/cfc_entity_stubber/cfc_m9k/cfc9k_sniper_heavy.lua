@@ -20,6 +20,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.Damage = 105
         weapon.Primary.Spread = 0.1
 		weapon.Primary.SpreadZoomed = 0.005
+		weapon.Primary.DefaultClip = 1000
     end
 end )
 
@@ -42,5 +43,6 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.Damage = 70
         weapon.Primary.Spread = 0.04
         weapon.Primary.SpreadZoomed = 0.001
+		weapon.Primary.DefaultClip = 1000
     end
 end )

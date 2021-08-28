@@ -22,5 +22,6 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.Spread = 0.1
         weapon.Primary.IronAccuracy = 0.001
 		weapon.Primary.Automatic = false
+		weapon.Primary.DefaultClip = 1000
     end
 end )
