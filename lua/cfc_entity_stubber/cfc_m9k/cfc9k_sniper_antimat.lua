@@ -18,7 +18,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.KickHorizontal = 3
         weapon.Primary.Damage = 150
         weapon.Primary.Spread = 0.17
-		weapon.Primary.SpreadZoomed = 0.006
+		weapon.Primary.SpreadZoomed = 0.005
 		weapon.Primary.DefaultClip = 1000
 		weapon.ACF_DamageMult = 10
     end
