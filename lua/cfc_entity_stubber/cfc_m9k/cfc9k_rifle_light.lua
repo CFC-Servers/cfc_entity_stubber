@@ -23,7 +23,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.KickHorizontal = 0.2
         weapon.Primary.Damage = 20
         weapon.Primary.Spread = 0.04
-        weapon.Primary.IronAccuracy = 0.01
+        weapon.Primary.IronAccuracy = 0.007
     end
 end )
 
@@ -39,6 +39,6 @@ cfcEntityStubber.registerStub( function()
         weapon.Purpose = ""
         weapon.CFC_Category = "Rifle:Light"
 
-		weapon.Primary.SpreadZoomed = 0.01
+		weapon.Primary.SpreadZoomed = 0.007
     end
 end )
