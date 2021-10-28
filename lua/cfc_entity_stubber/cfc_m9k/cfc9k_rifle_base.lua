@@ -12,9 +12,9 @@ cfcEntityStubber.registerStub( function()
 
         weapon.Primary.RPM = 650
         weapon.Primary.ClipSize = 30
-        weapon.Primary.KickUp = 0.5
+        weapon.Primary.KickUp = 1
         weapon.Primary.KickDown = 0
-        weapon.Primary.KickHorizontal = 0.2
+        weapon.Primary.KickHorizontal = 0.23
         weapon.Primary.Automatic = true
         weapon.Primary.Ammo = "ar2"
         weapon.Primary.NumShots = 1
@@ -37,9 +37,9 @@ cfcEntityStubber.registerStub( function()
 
         weapon.Primary.RPM = 650
         weapon.Primary.ClipSize = 30
-        weapon.Primary.KickUp = 0.5
+        weapon.Primary.KickUp = 1
         weapon.Primary.KickDown = 0
-        weapon.Primary.KickHorizontal = 0.2
+        weapon.Primary.KickHorizontal = 0.23
         weapon.Primary.Automatic = true
         weapon.Primary.Ammo = "ar2"
         weapon.Primary.NumShots = 1
@@ -62,9 +62,9 @@ cfcEntityStubber.registerStub( function()
 
         weapon.Primary.RPM = 625
         weapon.Primary.ClipSize = 30
-        weapon.Primary.KickUp = 0.47
+        weapon.Primary.KickUp = 0.95
         weapon.Primary.KickDown = 0
-        weapon.Primary.KickHorizontal = 0.18
+        weapon.Primary.KickHorizontal = 0.21
         weapon.Primary.Automatic = true
         weapon.Primary.Ammo = "ar2"
         weapon.Primary.NumShots = 1
@@ -87,9 +87,9 @@ cfcEntityStubber.registerStub( function()
 
         weapon.Primary.RPM = 675
         weapon.Primary.ClipSize = 30
-        weapon.Primary.KickUp = 0.5
+        weapon.Primary.KickUp = 1
         weapon.Primary.KickDown = 0
-        weapon.Primary.KickHorizontal = 0.2
+        weapon.Primary.KickHorizontal = 0.23
         weapon.Primary.Automatic = true
         weapon.Primary.Ammo = "ar2"
         weapon.Primary.NumShots = 1
@@ -111,9 +111,9 @@ cfcEntityStubber.registerStub( function()
 
         weapon.Primary.RPM = 640
         weapon.Primary.ClipSize = 30
-        weapon.Primary.KickUp = 0.45
+        weapon.Primary.KickUp = 0.95
         weapon.Primary.KickDown = 0
-        weapon.Primary.KickHorizontal = 0.2
+        weapon.Primary.KickHorizontal = 0.23
         weapon.Primary.Automatic = true
         weapon.Primary.Ammo = "ar2"
         weapon.Primary.NumShots = 1
