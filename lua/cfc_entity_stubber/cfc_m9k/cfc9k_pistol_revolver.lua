@@ -24,7 +24,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.Damage = 75
         weapon.Primary.Spread = 0.02
         weapon.Primary.NumShots = 1
-        weapon.Primary.IronAccuracy = 0.005
+        weapon.Primary.IronAccuracy = 0.0005
     end
 end )
 
@@ -47,7 +47,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.Damage = 55
         weapon.Primary.Spread = 0.01
 		weapon.Primary.NumShots = 1
-        weapon.Primary.IronAccuracy = 0.007
+        weapon.Primary.IronAccuracy = 0.0007
     end
 end )
 
@@ -61,6 +61,6 @@ cfcEntityStubber.registerStub( function()
         weapon.Purpose = ""
         weapon.CFC_Category = "Pistol:Revolver"
 
-		weapon.Primary.SpreadZoomed = 0.005
+		weapon.Primary.SpreadZoomed = 0.0005
     end
 end )
