@@ -11,7 +11,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Purpose = ""
         weapon.CFC_Category = "LMG:Agile"
 
-        weapon.Primary.RPM = 450
+        weapon.Primary.RPM = 500
         weapon.Primary.ClipSize = 20
         weapon.Primary.KickUp = 1
         weapon.Primary.KickDown = 0
@@ -32,7 +32,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Purpose = ""
         weapon.CFC_Category = "LMG:Agile"
 
-        weapon.Primary.RPM = 475
+        weapon.Primary.RPM = 525
         weapon.Primary.ClipSize = 20
         weapon.Primary.KickUp = 1
         weapon.Primary.KickDown = 0

@@ -10,7 +10,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Purpose = "An automatic, less accurate version of the base pistol"
         weapon.CFC_Category = "Pistol:Machine"
 
-        weapon.Primary.RPM = 800
+        weapon.Primary.RPM = 850
         weapon.Primary.ClipSize = 20
         weapon.Primary.KickUp = 1.1
         weapon.Primary.KickDown = 0
@@ -32,7 +32,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Purpose = "An automatic, less accurate version of the base pistol"
         weapon.CFC_Category = "Pistol:Machine"
 
-        weapon.Primary.RPM = 750
+        weapon.Primary.RPM = 800
         weapon.Primary.ClipSize = 20
         weapon.Primary.KickUp = 1.1
         weapon.Primary.KickDown = 0

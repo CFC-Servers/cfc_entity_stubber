@@ -10,7 +10,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Purpose = ""
         weapon.CFC_Category = "SMG:Heavy"
 
-        weapon.Primary.RPM = 700
+        weapon.Primary.RPM = 750
         weapon.Primary.ClipSize = 30
         weapon.Primary.KickUp = 0.55
         weapon.Primary.KickDown = 0
@@ -52,7 +52,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Purpose = ""
         weapon.CFC_Category = "SMG:Heavy"
 
-        weapon.Primary.RPM = 700
+        weapon.Primary.RPM = 750
         weapon.Primary.ClipSize = 30
         weapon.Primary.KickUp = 0.53
         weapon.Primary.KickDown = 0
@@ -73,7 +73,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Purpose = ""
         weapon.CFC_Category = "SMG:Heavy"
 
-        weapon.Primary.RPM = 700
+        weapon.Primary.RPM = 750
         weapon.Primary.ClipSize = 30
         weapon.Primary.KickUp = 0.55
         weapon.Primary.KickDown = 0
@@ -94,7 +94,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Purpose = ""
         weapon.CFC_Category = "SMG:Heavy"
 
-        weapon.Primary.RPM = 675
+        weapon.Primary.RPM = 725
         weapon.Primary.ClipSize = 30
         weapon.Primary.KickUp = 0.53
         weapon.Primary.KickDown = 0

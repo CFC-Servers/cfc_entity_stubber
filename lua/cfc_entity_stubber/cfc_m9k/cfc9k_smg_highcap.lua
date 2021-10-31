@@ -12,12 +12,12 @@ cfcEntityStubber.registerStub( function()
         weapon.Purpose = ""
         weapon.CFC_Category = "SMG:HighCap"
 
-        weapon.Primary.RPM = 800
+        weapon.Primary.RPM = 850
         weapon.Primary.ClipSize = 60
         weapon.Primary.KickUp = 0.35
         weapon.Primary.KickDown = 0
         weapon.Primary.KickHorizontal = 0.17
-        weapon.Primary.Damage = 17
+        weapon.Primary.Damage = 19
         weapon.Primary.Spread = 0.03
         weapon.Primary.IronAccuracy = 0.02
     end

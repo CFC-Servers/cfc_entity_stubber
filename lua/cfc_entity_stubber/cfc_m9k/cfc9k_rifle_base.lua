@@ -10,7 +10,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Purpose = ""
         weapon.CFC_Category = "Rifle:Base"
 
-        weapon.Primary.RPM = 650
+        weapon.Primary.RPM = 700
         weapon.Primary.ClipSize = 30
         weapon.Primary.KickUp = 1
         weapon.Primary.KickDown = 0
@@ -18,7 +18,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.Automatic = true
         weapon.Primary.Ammo = "ar2"
         weapon.Primary.NumShots = 1
-        weapon.Primary.Damage = 25
+        weapon.Primary.Damage = 28
         weapon.Primary.Spread = 0.04
         weapon.Primary.IronAccuracy = 0.006
     end
@@ -35,7 +35,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Purpose = ""
         weapon.CFC_Category = "Rifle:Base"
 
-        weapon.Primary.RPM = 650
+        weapon.Primary.RPM = 700
         weapon.Primary.ClipSize = 30
         weapon.Primary.KickUp = 1
         weapon.Primary.KickDown = 0
@@ -43,7 +43,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.Automatic = true
         weapon.Primary.Ammo = "ar2"
         weapon.Primary.NumShots = 1
-        weapon.Primary.Damage = 25
+        weapon.Primary.Damage = 28
         weapon.Primary.Spread = 0.043
 		weapon.Primary.Sound = "an94.Single"
 		weapon.Primary.SpreadZoomed = 0.0057
@@ -60,7 +60,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Purpose = ""
         weapon.CFC_Category = "Rifle:Base"
 
-        weapon.Primary.RPM = 625
+        weapon.Primary.RPM = 675
         weapon.Primary.ClipSize = 30
         weapon.Primary.KickUp = 0.95
         weapon.Primary.KickDown = 0
@@ -68,7 +68,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.Automatic = true
         weapon.Primary.Ammo = "ar2"
         weapon.Primary.NumShots = 1
-        weapon.Primary.Damage = 25
+        weapon.Primary.Damage = 28
         weapon.Primary.Spread = 0.04
         weapon.Primary.IronAccuracy = 0.006
     end
@@ -85,7 +85,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Purpose = ""
         weapon.CFC_Category = "Rifle:Base"
 
-        weapon.Primary.RPM = 675
+        weapon.Primary.RPM = 725
         weapon.Primary.ClipSize = 30
         weapon.Primary.KickUp = 1
         weapon.Primary.KickDown = 0
@@ -93,7 +93,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.Automatic = true
         weapon.Primary.Ammo = "ar2"
         weapon.Primary.NumShots = 1
-        weapon.Primary.Damage = 25
+        weapon.Primary.Damage = 28
         weapon.Primary.Spread = 0.045
         weapon.Primary.IronAccuracy = 0.0062
     end
@@ -109,7 +109,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Purpose = ""
         weapon.CFC_Category = "Rifle:Base"
 
-        weapon.Primary.RPM = 640
+        weapon.Primary.RPM = 690
         weapon.Primary.ClipSize = 30
         weapon.Primary.KickUp = 0.95
         weapon.Primary.KickDown = 0
@@ -117,7 +117,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.Automatic = true
         weapon.Primary.Ammo = "ar2"
         weapon.Primary.NumShots = 1
-        weapon.Primary.Damage = 25
+        weapon.Primary.Damage = 28
         weapon.Primary.Spread = 0.04
         weapon.Primary.IronAccuracy = 0.006
     end
