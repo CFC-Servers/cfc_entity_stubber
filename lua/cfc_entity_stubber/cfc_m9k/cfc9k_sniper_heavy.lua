@@ -19,7 +19,6 @@ cfcEntityStubber.registerStub( function()
 		weapon.Primary.SpreadBefore = 0.06
 		weapon.Primary.SpreadZoomed = 0.0002
 		weapon.Primary.DefaultClip = 1000
-		weapon.ScopeScale = 1.5
     end
 end )
 
@@ -42,7 +41,6 @@ cfcEntityStubber.registerStub( function()
 		weapon.Primary.SpreadBefore = 0.06
 		weapon.Primary.SpreadZoomed = 0.0002
 		weapon.Primary.DefaultClip = 1000
-		weapon.ScopeScale = 1.5
     end
 end )
 
@@ -65,6 +63,5 @@ cfcEntityStubber.registerStub( function()
 		weapon.Primary.SpreadBefore = 0.06
 		weapon.Primary.SpreadZoomed = 0.0002
 		weapon.Primary.DefaultClip = 1000
-		weapon.ScopeScale = 1.5
     end
 end )
