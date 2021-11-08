@@ -15,9 +15,9 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.KickUp = 2
         weapon.Primary.KickDown = 4
         weapon.Primary.KickHorizontal = 8
-        weapon.Primary.Damage = 90
+        weapon.Primary.Damage = 75
         weapon.Primary.SpreadBefore = 0.02
-		weapon.Primary.SpreadZoomed = 0
+		weapon.Primary.SpreadZoomed = 0.0001
 		weapon.Primary.DefaultClip = 1000
     end
 end )
@@ -37,9 +37,9 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.KickUp = 2
         weapon.Primary.KickDown = 4
         weapon.Primary.KickHorizontal = 8
-        weapon.Primary.Damage = 90
-        weapon.Primary.SpreadBefore = 0.025
-		weapon.Primary.SpreadZoomed = 0
+        weapon.Primary.Damage = 25
+        weapon.Primary.SpreadBefore = 0.035
+		weapon.Primary.SpreadZoomed = 0.0005
 		weapon.Primary.DefaultClip = 1000
     end
 end )
@@ -60,9 +60,9 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.KickDown = 6
         weapon.Primary.KickHorizontal = 8
         weapon.Primary.Automatic = false
-        weapon.Primary.Damage = 90
+        weapon.Primary.Damage = 75
         weapon.Primary.SpreadBefore = 0.013
-        weapon.Primary.SpreadZoomed = 0.0
+        weapon.Primary.SpreadZoomed = 0.0001
 		weapon.Primary.DefaultClip = 1000
     end
 end )

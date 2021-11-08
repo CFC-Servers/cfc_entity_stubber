@@ -17,9 +17,10 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.KickHorizontal = 0.2
         weapon.Primary.Automatic = false
         weapon.Primary.Ammo = "AirboatGun"
-        weapon.Primary.Damage = 75
+        weapon.Primary.Damage = 55
         weapon.Primary.Spread = 0.06
         weapon.Primary.IronAccuracy = 0.0001
+		weapon.Primary.DefaultClip = 1000
     end
 end )
 
@@ -40,9 +41,10 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.KickHorizontal = 0.2
         weapon.Primary.Automatic = true
         weapon.Primary.Ammo = "AirboatGun"
-        weapon.Primary.Damage = 75
+        weapon.Primary.Damage = 55
         weapon.Primary.Spread = 0.065
-        weapon.Primary.IronAccuracy = 0.0001
+        weapon.Primary.SpreadZoomed = 0.0001
+		weapon.Primary.DefaultClip = 1000
     end
 end )
 
@@ -66,5 +68,6 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.Damage = 75
         weapon.Primary.Spread = 0.06
         weapon.Primary.IronAccuracy = 0.0001
+		weapon.Primary.DefaultClip = 1000
     end
 end )

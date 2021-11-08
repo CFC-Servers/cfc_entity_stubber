@@ -2,8 +2,7 @@ AddCSLuaFile()
 
 cfcEntityStubber.registerStub( function()
     local weapons = {
-        "m9k_m1918bar",
-        "m9k_fg42"
+        "m9k_m1918bar"
     }
 
     for _, weaponClass in ipairs( weapons ) do

@@ -19,6 +19,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.Spread = 0.05
         weapon.Primary.IronAccuracy = 0.009
 		weapon.Primary.Ammo = "AirboatGun"
+		weapon.Primary.DefaultClip = 1000
     end
 end )
 
@@ -41,5 +42,6 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.Spread = 0.048
         weapon.Primary.IronAccuracy = 0.0093
 		weapon.Primary.Ammo = "AirboatGun"
+		weapon.Primary.DefaultClip = 1000
     end
 end )
