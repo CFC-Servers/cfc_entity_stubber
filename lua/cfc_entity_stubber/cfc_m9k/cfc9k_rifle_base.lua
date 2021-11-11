@@ -20,7 +20,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.NumShots = 1
         weapon.Primary.Damage = 28
         weapon.Primary.Spread = 0.04
-        weapon.Primary.IronAccuracy = 0.006
+        weapon.Primary.IronAccuracy = 0.0055
     end
 end )
 
@@ -46,7 +46,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.Damage = 28
         weapon.Primary.Spread = 0.043
 		weapon.Primary.Sound = "an94.Single"
-		weapon.Primary.SpreadZoomed = 0.0057
+		weapon.Primary.SpreadZoomed = 0.005
     end
 end )
 
@@ -70,7 +70,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.NumShots = 1
         weapon.Primary.Damage = 28
         weapon.Primary.Spread = 0.04
-        weapon.Primary.IronAccuracy = 0.006
+        weapon.Primary.IronAccuracy = 0.0055
     end
 end )
 
@@ -95,7 +95,7 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.NumShots = 1
         weapon.Primary.Damage = 28
         weapon.Primary.Spread = 0.045
-        weapon.Primary.IronAccuracy = 0.0062
+        weapon.Primary.IronAccuracy = 0.0052
     end
 end )
 
@@ -119,6 +119,6 @@ cfcEntityStubber.registerStub( function()
         weapon.Primary.NumShots = 1
         weapon.Primary.Damage = 28
         weapon.Primary.Spread = 0.04
-        weapon.Primary.IronAccuracy = 0.006
+        weapon.Primary.IronAccuracy = 0.005
     end
 end )
