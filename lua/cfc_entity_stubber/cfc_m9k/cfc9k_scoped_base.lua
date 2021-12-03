@@ -11,6 +11,7 @@ cfcEntityStubber.registerStub( function()
         self.DrawCrosshair = false
         self:SetNWInt( "ScopeState", 100 )
         owner:DrawViewModel( false )
+        if CLIENT then return end
         owner:EmitSound("weapons/zoom.wav")
     end
 
@@ -22,6 +23,7 @@ cfcEntityStubber.registerStub( function()
         self.DrawCrosshair = true
         self:SetNWInt( "ScopeState", 0 )
         owner:DrawViewModel( true )
+        if CLIENT then return end
         owner:EmitSound("weapons/zoom.wav")
     end
 
@@ -73,7 +75,9 @@ cfcEntityStubber.registerStub( function()
             self.DrawCrosshair = true
             self:SetNWInt( "ScopeState", 0 )
             owner:DrawViewModel( true )
-            owner:EmitSound( "weapons/zoom.wav" )
+            if SERVER then
+                owner:EmitSound( "weapons/zoom.wav" )
+            end
             self.NextReloadTime = CurTime() + 0.5
         end
 
