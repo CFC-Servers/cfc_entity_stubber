@@ -22,6 +22,10 @@ cfcEntityStubber.registerStub( function()
     weapon.Primary.Spread = .08
 end )
 ```
+# Used by
+https://github.com/CFC-Servers/cfc_entity_stubber_ttt
+
+https://github.com/CFC-Servers/cfc_entity_stubber_build_kill
 
 # Description
 This addon allows creation of "stubbers" and "stub" files. Stubbers are used to create functions for the specific stub files. Stub files allow the editor to make specific changes on weapons / entities without modifying the code of the entity.
