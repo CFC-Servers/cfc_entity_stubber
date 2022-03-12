@@ -1,2 +1,0 @@
-AddCSLuaFile()
-cfcEntityStubber.registerStubber( "cw" )
