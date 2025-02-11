@@ -84,9 +84,13 @@ end
 
 -- HOOKS
 hook.Add( "InitPostEntity", "StubberStart", function()
+    cfcEntityStubber.printMessage( "Starting stubber...", Color( 0, 255, 0 ) )
+
     cfcEntityStubber.includeStubbers()
     cfcEntityStubber.loadStubs( cfcEntityStubber.stubbers )
     cfcEntityStubber.runStubs( cfcEntityStubber.stubQueue )
+
+    cfcEntityStubber.printMessage( "Ran all stubs.", Color( 0, 255, 0 ) )
 
     hook.Run( "CFC_EntityStubber_PostRunStubs" )
 end )
