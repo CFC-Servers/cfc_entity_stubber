@@ -1,7 +1,6 @@
 cfcEntityStubber = {}
 cfcEntityStubber.stubQueue = {}
 cfcEntityStubber.stubbers = {}
-cfcEntityStubber.oldWeaponStats = {}
 local stubbersDirectory = "cfc_entity_stubber/stubbers/"
 
 -- MAIN STUBBER FUNCTIONS 
@@ -76,9 +75,6 @@ function cfcEntityStubber.registerStub( stub )
 end
 
 function cfcEntityStubber.getWeapon( wepClass )
-    local current = cfcEntityStubber.oldWeaponStats[wepClass]
-    cfcEntityStubber.oldWeaponStats[wepClass] = current or weapons.Get( wepClass )
-
     return weapons.GetStored( wepClass )
 end
 
