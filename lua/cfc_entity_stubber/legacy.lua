@@ -54,7 +54,7 @@ end
 
 function cfcEntityStubber.runStubs( stubQueue )
     local function catch( err )
-        cfcEntityStubber.printMessage( "ERROR: " .. debug.traceback( tostring( err ), 2 ), Color( 255, 125, 0 ) )
+        cfcEntityStubber.printMessage( "ERROR: " .. tostring( err ), Color( 255, 125, 0 ) )
     end
 
     for _, stub in pairs( stubQueue ) do
