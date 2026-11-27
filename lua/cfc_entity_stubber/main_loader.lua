@@ -13,7 +13,7 @@ local function indexDirectory( directory, stubs )
         if SERVER then AddCSLuaFile( path ) end
 
         if stubs[class] then
-            ErrorNoHalt( "[Stubber] Duplicate stub: " .. path .. "; using " .. stubs[class] .. "\n" )
+            cfcEntityStubber.printMessage( "ERROR: Duplicate stub: " .. path .. "; using " .. stubs[class], Color( 255, 125, 0 ) )
         else
             stubs[class] = path
         end
@@ -44,7 +44,7 @@ local function loadStubs( directory, event, identifier )
 
             return apply( definition )
         end, function( err )
-            ErrorNoHalt( "[Stubber] " .. path .. ": " .. debug.traceback( tostring( err ), 2 ) .. "\n" )
+            cfcEntityStubber.printMessage( "ERROR: " .. path .. ": " .. debug.traceback( tostring( err ), 2 ), Color( 255, 125, 0 ) )
         end )
 
         -- Only an explicit veto may stop registration and other hook listeners.
