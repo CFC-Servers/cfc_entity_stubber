@@ -3,10 +3,7 @@ cfcEntityStubber = cfcEntityStubber or {}
 if SERVER then AddCSLuaFile( "cfc_entity_stubber/legacy.lua" ) end
 include( "cfc_entity_stubber/legacy.lua" )
 
-local weaponStubs = {}
-local weaponsDirectory = "cfc_entity_stubber/weapons/"
-
-local function indexDirectory( directory )
+local function indexDirectory( directory, stubs )
     local files = file.Find( directory .. "*.lua", "LUA", "nameasc" )
 
     for _, fileName in ipairs( files ) do
@@ -15,37 +12,45 @@ local function indexDirectory( directory )
 
         if SERVER then AddCSLuaFile( path ) end
 
-        if weaponStubs[class] then
-            ErrorNoHalt( "[Stubber] Duplicate weapon stub: " .. path .. "; using " .. weaponStubs[class] .. "\n" )
+        if stubs[class] then
+            ErrorNoHalt( "[Stubber] Duplicate stub: " .. path .. "; using " .. stubs[class] .. "\n" )
         else
-            weaponStubs[class] = path
+            stubs[class] = path
         end
     end
 end
 
-indexDirectory( weaponsDirectory )
+local function loadStubs( directory, event, identifier )
+    local stubs = {}
+    indexDirectory( directory, stubs )
 
-local _, folders = file.Find( weaponsDirectory .. "*", "LUA", "nameasc" )
-for _, folder in ipairs( folders ) do
-    indexDirectory( weaponsDirectory .. folder .. "/" )
+    local _, folders = file.Find( directory .. "*", "LUA", "nameasc" )
+    for _, folder in ipairs( folders ) do
+        indexDirectory( directory .. folder .. "/", stubs )
+    end
+
+    hook.Add( event, identifier, function( definition, class )
+        -- Both registration functions resolve ClassNameOverride after their hook.
+        if isstring( definition.ClassNameOverride ) then class = definition.ClassNameOverride end
+
+        local path = stubs[class]
+        if not path then return end
+
+        local success, result = xpcall( function()
+            local apply = include( path )
+            if not isfunction( apply ) then
+                error( "Stub must return a function" )
+            end
+
+            return apply( definition )
+        end, function( err )
+            ErrorNoHalt( "[Stubber] " .. path .. ": " .. debug.traceback( tostring( err ), 2 ) .. "\n" )
+        end )
+
+        -- Only an explicit veto may stop registration and other hook listeners.
+        if success and result == false then return false end
+    end )
 end
 
-hook.Add( "PreRegisterSWEP", "CFC_EntityStubber_ApplyWeaponStub", function( weapon, class )
-    -- weapons.Register resolves ClassNameOverride after this hook.
-    if isstring( weapon.ClassNameOverride ) then class = weapon.ClassNameOverride end
-
-    local path = weaponStubs[class]
-    if not path then return end
-
-    xpcall( function()
-        -- Include at registration time so dependencies need not exist during autorun.
-        local apply = include( path )
-        if not isfunction( apply ) then
-            error( "Weapon stub must return a function" )
-        end
-
-        apply( weapon )
-    end, function( err )
-        ErrorNoHalt( "[Stubber] " .. path .. ": " .. debug.traceback( tostring( err ), 2 ) .. "\n" )
-    end )
-end )
+loadStubs( "cfc_entity_stubber/weapons/", "PreRegisterSWEP", "CFC_EntityStubber_ApplyWeaponStub" )
+loadStubs( "cfc_entity_stubber/entities/", "PreRegisterSENT", "CFC_EntityStubber_ApplyEntityStub" )
