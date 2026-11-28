@@ -1,95 +1,62 @@
 # cfc_entity_stubber
 
-Ever needed to make tweaks to existing weapon packs, but don't want to self-host it? Entity Stubber is for you!
-With Entity Stubber, you can make modifications to any entity on your server with minimal coding. Here's how:
+Modify installed weapons, scripted entities, and other addon data without maintaining forks.
 
-Let's say you have a M9k Ak47 that does too much damage. You would register the stub as:
+## Stub directories
 
+All paths below are relative to `lua/cfc_entity_stubber/` in any installed addon.
 
-lua/cfc_entity_stubber/stubbers/cw_stubber.lua would be:
-```lua
-AddCSLuaFile()
-cfcEntityStubber.registerStubber( "m9k" )
-```
-lua/cfc_entity_stubber/cw/cw_ak74.lua would be:
-```lua
-AddCSLuaFile()
+| Directory | When it runs | Callback input |
+| --- | --- | --- |
+| `weapons/<group>/<class>.lua` | `PreRegisterSWEP` | SWEP definition |
+| `entities/<group>/<class>.lua` | `PreRegisterSENT` | ENT definition |
+| `postentityinit/<group>/<name>.lua` | `InitPostEntity` | No definition |
 
-cfcEntityStubber.registerStub( function()
-    local weapon = cfcEntityStubber.getWeapon( "m9k_ak47" )
-    weapon.Primary.KickDown = 0.1
-    weapon.Primary.Damage = 10000
-    weapon.Primary.Spread = .08
-end )
-```
-# Used by
-https://github.com/CFC-Servers/cfc_entity_stubber_ttt
+Each file returns a function. The main loader discovers files and handles AddCSLuaFile automatically. Files can live directly in each directory or in one grouping directory beneath it. Deeper nesting is not supported. Keep realm-specific work inside SERVER or CLIENT guards.
 
-https://github.com/CFC-Servers/cfc_entity_stubber_build_kill
-
-# Description
-This addon allows creation of "stubbers" and "stub" files. Stubbers are used to create functions for the specific stub files. Stub files allow the editor to make specific changes on weapons / entities without modifying the code of the entity.
-
-The stubs are applied after all entities are loaded during server startup, or on client after all entities initialized.
-
-# Inner workings
-
-1. The main stubber gets loaded and includes for all files in:
-
-        lua/cfc_entity_stubber/stubbers
-
-2. The main stubber looks through all the folders that the stubbers registered.
-
-    Looking at files in and it's 1 depth sub folders and registering the files found.
-
-        lua/cfc_entity_stubber/stubname
-    
-3. The main stubber includes all files found.
-
-This happens on InitPostEntity for both client and server.
-
-# Existing stubber examples ( M9k, CW, CW Attachments )
-
-M9k:
+For `weapons/m9k/m9k_ak47.lua`:
 
 ```lua
-AddCSLuaFile()
-
-cfcEntityStubber.registerStub( function()
-    local weapon = cfcEntityStubber.getWeapon( "m9k_ak47" )
-    weapon.Primary.KickDown = 0.1
-    weapon.Primary.Damage = 10000
-    weapon.Primary.Spread = .08
-end ) 
+return function( weapon )
+    weapon.Primary.Damage = 30
+end
 ```
 
-CW:
+For `entities/lfs/lunasflightschool_combineheli.lua`:
 
 ```lua
-AddCSLuaFile()
-
-cfcEntityStubber.registerStub( function()
-    local weapon = cfcEntityStubber.getWeapon( "cw_ak74" )
-    weapon.Shots = 1
-    weapon.Damage = 20
-    weapon.PrintName = "Stubbed gun!"
-end )
+return function( entity )
+    entity.MaxHealth = 1000
+end
 ```
-CW Attachments:
+
+Weapon and entity filenames are exact class identifiers, including prefixes. Their indexes are separate. Group names only organize files. Duplicate classes within an index report an error and the first discovered path wins. Identical paths across addons collide in GMod's shared Lua filesystem and cannot be distinguished by this loader.
+
+## Work after entity initialization
+
+For `postentityinit/my_addon/adjust_data.lua`:
 
 ```lua
-AddCSLuaFile()
-
-cfcEntityStubber.registerStub( function()
-    local attachment = cfcEntityStubber.getAttachment( "bg_longbarrel" )
-
-    attachment.statModifiers = {
-        AimSpreadMult = -0.1,
-        DamageMult = 100,
-        OverallMouseSensMult = -0.1,
-        RecoilMult = 0.1
-    }
-
-    cfcEntityStubber.applyAttachmentChange( attachment )
-end )
+return function()
+    -- Modify addon data that is available at InitPostEntity.
+end
 ```
+
+These files are included and their callbacks executed at InitPostEntity in each realm. Direct files run first, followed by groups alphabetically; files within each directory run alphabetically. Put shared helper setup in a direct file when grouped callbacks depend on it. Each full path runs independently; delayed filenames are labels, not weapon or entity class identifiers.
+
+A callback error is printed with the colored Stubber prefix, file path, and traceback, and later files still run. Delayed callback return values are ignored. `CFC_EntityStubber_PostRunStubs` fires without arguments after all delayed files have been attempted in the current realm. Listeners should return nothing.
+
+## Registration behavior
+
+Weapon and entity callbacks edit the actual definition before registration stores it. Do not look up the current target with weapons.GetStored or scripted_ents.GetStored inside these callbacks. Inherited fields and base-class tables may not exist yet; initialize missing subtables and resolve base methods inside runtime methods where needed. Entity callbacks receive the ENT definition, not the wrapper returned by scripted_ents.GetStored.
+
+To hide a weapon or entity from conventional spawn-menu use while allowing other addons to create it:
+
+```lua
+return function( definition )
+    definition.AdminOnly = true
+    definition.Spawnable = false
+end
+```
+
+Only return `false` if you intend to cancel registration entirely. Other callback return values do not stop subsequent hook listeners. Errors are reported and registration continues, possibly retaining changes made before the error. ClassNameOverride, when supplied, determines the lookup class. This follows the engine's [weapon registration](https://github.com/Facepunch/garrysmod/blob/master/garrysmod/lua/includes/modules/weapons.lua) and [entity registration](https://github.com/Facepunch/garrysmod/blob/master/garrysmod/lua/includes/modules/scripted_ents.lua) contracts.

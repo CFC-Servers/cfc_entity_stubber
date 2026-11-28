@@ -1,92 +1,93 @@
-cfcEntityStubber = {}
-cfcEntityStubber.stubQueue = {}
-cfcEntityStubber.stubbers = {}
-local stubbersDirectory = "cfc_entity_stubber/stubbers/"
+cfcEntityStubber = cfcEntityStubber or {}
 
--- MAIN STUBBER FUNCTIONS 
 function cfcEntityStubber.printMessage( text, color )
     MsgC( Color( 41, 41, 41 ), "[", Color( 150, 150, 150 ), "Stubber", Color( 41, 41, 41 ), "] ", color, text .. "\n" )
 end
 
-function cfcEntityStubber.includeStubbers()
-    local files = file.Find( stubbersDirectory .. "*.lua", "LUA", "datedesc" )
-
-    for _, stubber in ipairs( files ) do
-        cfcEntityStubber.printMessage( stubber .. " successfully loaded.", Color( 0, 255, 0 ) )
-        include( stubbersDirectory .. stubber )
-    end
-end
-
-function cfcEntityStubber.loadStub( dir )
-    local stubFolderPath = "cfc_entity_stubber/" .. dir .. "/"
-    local stubFiles, stubFolders = file.Find( stubFolderPath .. "*", "LUA" )
-    local noFiles = table.IsEmpty( stubFiles )
-    local noFolders = table.IsEmpty( stubFolders )
-
-    if noFiles and noFolders then
-        cfcEntityStubber.printMessage( "folder " .. dir .. " is empty or doesn't exist.", Color( 255, 0, 0 ) )
-        return
-    end
-
-    for _, stubFile in ipairs( stubFiles ) do
-        include( stubFolderPath .. stubFile )
-    end
-
-    for _, stubFile in ipairs( stubFolders ) do
-        local subfolderPath = stubFolderPath .. stubFile .. "/"
-        local subfolderFiles = file.Find( subfolderPath .. "*.lua", "LUA", "nameasc" )
-
-        for _, fileName in pairs( subfolderFiles ) do
-            include( subfolderPath .. fileName )
+local function findStubs( directory )
+    local paths = {}
+    local function addFiles( folder )
+        local files = file.Find( folder .. "*.lua", "LUA", "nameasc" )
+        for _, fileName in ipairs( files ) do
+            local path = folder .. fileName
+            if SERVER then AddCSLuaFile( path ) end
+            paths[#paths + 1] = path
         end
     end
-end
 
-function cfcEntityStubber.loadStubs( tab )
-    for _, dir in ipairs( tab ) do
-        cfcEntityStubber.loadStub( dir )
+    addFiles( directory )
+    local _, folders = file.Find( directory .. "*", "LUA", "nameasc" )
+    for _, folder in ipairs( folders ) do
+        addFiles( directory .. folder .. "/" )
     end
+
+    return paths
 end
 
-function cfcEntityStubber.runStubs( stubQueue )
-    for _, stub in pairs( stubQueue ) do
-        if SERVER then
-            ProtectedCall( stub )
+local function runStub( path, definition )
+    return xpcall( function()
+        local apply = include( path )
+        if not isfunction( apply ) then
+            error( "Stub must return a function" )
         end
 
-        if CLIENT then
-            local function catch( err )
-                cfcEntityStubber.printMessage( "ERROR: " .. err, Color( 255, 125, 0 ) )
-            end
+        return apply( definition )
+    end, function( err )
+        cfcEntityStubber.printMessage( "ERROR: " .. path .. ": " .. tostring( err ), Color( 255, 125, 0 ) )
+    end )
+end
 
-            xpcall( stub, catch )
+local function loadStubs( directory, event, identifier )
+    local stubs = {}
+    local kind = event == "PreRegisterSWEP" and "SWEP" or "SENT"
+    for _, path in ipairs( findStubs( directory ) ) do
+        local class = string.StripExtension( string.GetFileFromFilename( path ) )
+        if stubs[class] then
+            cfcEntityStubber.printMessage( "ERROR: Duplicate stub: " .. path .. "; using " .. stubs[class], Color( 255, 125, 0 ) )
+        else
+            stubs[class] = path
         end
     end
+
+    hook.Add( event, identifier, function( definition, class )
+        -- Both registration functions resolve ClassNameOverride after their hook.
+        if isstring( definition.ClassNameOverride ) then class = definition.ClassNameOverride end
+
+        local path = stubs[class]
+        if not path then return end
+
+        local success, result = runStub( path, definition )
+        if not success then return end
+
+        -- Only an explicit veto may stop registration and other hook listeners.
+        if result == false then
+            cfcEntityStubber.printMessage( "Cancelled registration of " .. kind .. " " .. class .. ".", Color( 255, 125, 0 ) )
+
+            return false
+        end
+
+        cfcEntityStubber.printMessage( "Successfully stubbed " .. kind .. " " .. class .. ".", Color( 0, 255, 0 ) )
+    end )
 end
 
--- STUBBER FUNCTIONS
--- Accepts the folder name of the stubbers files
-function cfcEntityStubber.registerStubber( stubberName )
-    table.insert( cfcEntityStubber.stubbers, stubberName )
-end
+cfcEntityStubber.printMessage( "Starting stubber...", Color( 0, 255, 0 ) )
 
-function cfcEntityStubber.registerStub( stub )
-    table.insert( cfcEntityStubber.stubQueue, stub )
-end
+loadStubs( "cfc_entity_stubber/weapons/", "PreRegisterSWEP", "CFC_EntityStubber_ApplyWeaponStub" )
+loadStubs( "cfc_entity_stubber/entities/", "PreRegisterSENT", "CFC_EntityStubber_ApplyEntityStub" )
 
-function cfcEntityStubber.getWeapon( wepClass )
-    return weapons.GetStored( wepClass )
-end
+local postEntityStubs = findStubs( "cfc_entity_stubber/postentityinit/" )
+-- Replace the previous InitPostEntity hook when refreshing an existing installation.
+hook.Remove( "InitPostEntity", "StubberStart" )
+hook.Add( "InitPostEntity", "CFC_EntityStubber_RunPostEntityStubs", function()
+    cfcEntityStubber.printMessage( "Starting postentityinit stubs...", Color( 0, 255, 0 ) )
 
--- HOOKS
-hook.Add( "InitPostEntity", "StubberStart", function()
-    cfcEntityStubber.printMessage( "Starting stubber...", Color( 0, 255, 0 ) )
+    for _, path in ipairs( postEntityStubs ) do
+        runStub( path )
+    end
 
-    cfcEntityStubber.includeStubbers()
-    cfcEntityStubber.loadStubs( cfcEntityStubber.stubbers )
-    cfcEntityStubber.runStubs( cfcEntityStubber.stubQueue )
-
-    cfcEntityStubber.printMessage( "Ran all stubs.", Color( 0, 255, 0 ) )
+    cfcEntityStubber.printMessage( "Finished running postentityinit stubs.", Color( 0, 255, 0 ) )
 
     hook.Run( "CFC_EntityStubber_PostRunStubs" )
 end )
+
+cfcEntityStubber.printMessage( "Stubber setup complete. Registration hooks are ready.", Color( 0, 255, 0 ) )
