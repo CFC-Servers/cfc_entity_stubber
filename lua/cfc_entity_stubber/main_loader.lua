@@ -33,7 +33,7 @@ local function runStub( path, definition )
 
         return apply( definition )
     end, function( err )
-        cfcEntityStubber.printMessage( "ERROR: " .. path .. ": " .. debug.traceback( tostring( err ), 2 ), Color( 255, 125, 0 ) )
+        cfcEntityStubber.printMessage( "ERROR: " .. path .. ": " .. tostring( err ), Color( 255, 125, 0 ) )
     end )
 end
 
